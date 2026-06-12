@@ -89,22 +89,6 @@ class ObjectBuilderTest extends TestCase
 
     public function testStockClasses(): void
     {
-        /**
-         * überlegen ob man auch parameter an das Interface übergeben kann.
-         * z.B. wenn der rückgabewert einer Methode Adresse ist...
-         * Beim direkten Aufruf des Interfaces müsste man den MethodenNamen als referenz nehmen.
-         * Bei Objecten die ein Interface in eine Variable legen, kann man diese nehmen. Dann ist aber immer noch die Frage welche Methode.
-         * Also vielleicht in diesen fällen auch auf den MethodenNamen gehen.
-         *
-         * Object { public MyInterface $interface; }
-         *
-         * ObjectBuilder::init(MyInterface::class, [ 'interface' => [ 'get' => [~ADRESSDATEN~], 'put' => 'string' ] ])->build();
-         * In diesem fall wird es aber wiedr problematisch mit z.B. int|string wenn random int rauskommt, aber ein string übergeben wurde.
-         * Man könnte versuchen auch callbacks zu übergeben. da muss geprüft werden wie diese in klartext umgewandelt werden kann.
-         *
-         * eventuell CreatReturnValue von ClassBuilder auslagern damit auch die anderen Builder darauf zugreifen könnne.
-         * das würe gut für das Interface, für Abstracte Klassen und für mixed.
-         */
         $stockClasses1 = ObjectBuilder::init(MyInterface::class, [
             'get' => ObjectBuilder::init(Address::class, [
                 'street' => 'Leipziger Straße'

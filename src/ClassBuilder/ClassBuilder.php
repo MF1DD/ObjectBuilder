@@ -245,7 +245,7 @@ class ClassBuilder implements ClassBuilderInterface
             $name = $randomStaticMethode->getName();
             return $reflectionClass->getName()::$name(...$parameters);
         } catch (Throwable $throwable) {
-            // Todo Was soll hier passieren?
+            // Static method invocation failed, fall through to tryExceptionSolver
         }
 
         return null;
@@ -283,7 +283,7 @@ class ClassBuilder implements ClassBuilderInterface
         }
 
         if (preg_match('/::__construct\(\) accepts (.*) as arguments/', $exception->getMessage(), $matches)) {
-            // silas versuche ein $parameterOptions. Wenn er funktioniert, ok. wenn nicht, nächten match versuchen, bis keiner mehr da ist oder einer funktioniert hat.
+            // Try different parameter combinations from the error message until one works
 
             $parameterOptions = explode(', or ', $matches[1]);
 
