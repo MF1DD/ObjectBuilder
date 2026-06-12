@@ -22,7 +22,7 @@ class InterfaceBuilder implements ClassBuilderInterface
      * @param ReflectionClass<object> $class
      * @param array<string, mixed> $parameters
      */
-    public function build(ReflectionClass $class, array $parameters): object
+    public function build(ReflectionClass $class, array $parameters, array $constraints = []): object
     {
         $interfaceHandler = HandlerService::getHandler($class);
 

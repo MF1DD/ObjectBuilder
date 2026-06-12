@@ -31,14 +31,21 @@ class ClassBuilder implements ClassBuilderInterface
     private array $parameters;
 
     /**
+     * @var array<string, array<string, mixed>>
+     */
+    private array $constraints;
+
+    /**
      * @param ReflectionClass<object> $class
      * @param array<string, mixed> $parameters
+     * @param array<string, array<string, mixed>> $constraints
      *
      * @return mixed
      */
-    public function build(ReflectionClass $class, array $parameters): mixed
+    public function build(ReflectionClass $class, array $parameters, array $constraints = []): mixed
     {
         $this->parameters = $parameters;
+        $this->constraints = $constraints;
         $constructor = $class->getConstructor();
         /**
          * Analysieren was die Klasse hat.
@@ -128,10 +135,12 @@ class ClassBuilder implements ClassBuilderInterface
 
         $defaultValue = $this->getDefaultValue($parameter);
 
+        $constraintOptions = $this->constraints[$parameter->getName()] ?? [];
         $property = new Property(
             name: $parameter->getName(),
             type: $propertyType,
             value: $this->parameters[$parameter->getName()] ?? $defaultValue,
+            constraints: !empty($constraintOptions) ? new Constraints($constraintOptions) : null,
         );
 
         $dataTypeHandler = DataTypeService::getDataTypeBuilder($property->type);

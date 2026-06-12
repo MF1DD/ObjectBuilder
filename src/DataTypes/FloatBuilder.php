@@ -18,7 +18,12 @@ class FloatBuilder implements DataTypeInterface
             return $this->property->value;
         }
 
-        return mt_rand() / mt_getrandmax();
+        $min = $this->property?->constraints?->min();
+        $max = $this->property?->constraints?->max();
+        $minFloat = $min !== null ? (float)$min : 0.0;
+        $maxFloat = $max !== null ? (float)$max : 1.0;
+
+        return $minFloat + mt_rand() / mt_getrandmax() * ($maxFloat - $minFloat);
     }
 
     public function setProperty(Property $property): self

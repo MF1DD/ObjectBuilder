@@ -13,7 +13,7 @@ class TraitBuilder implements ClassBuilderInterface
      * @param ReflectionClass<object> $class
      * @param array<string, mixed> $parameters
      */
-    public function build(ReflectionClass $class, array $parameters): object
+    public function build(ReflectionClass $class, array $parameters, array $constraints = []): object
     {
         $traitName = $class->getName();
         $code = sprintf("<?php\nreturn new class { use %s; };", $traitName);

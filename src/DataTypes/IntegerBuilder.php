@@ -18,6 +18,19 @@ class IntegerBuilder implements DataTypeInterface
             return $this->property->value;
         }
 
+        $min = $this->property?->constraints?->min();
+        $max = $this->property?->constraints?->max();
+
+        if ($min !== null && $max !== null) {
+            return mt_rand($min, $max);
+        }
+        if ($min !== null) {
+            return mt_rand($min, $min + 1000);
+        }
+        if ($max !== null) {
+            return mt_rand(0, $max);
+        }
+
         return mt_rand();
     }
 

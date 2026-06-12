@@ -20,6 +20,11 @@ final class ObjectBuilder
     private ClassBuilderInterface $classBuilder;
 
     /**
+     * @var array<string, array<string, mixed>>
+     */
+    private array $constraints = [];
+
+    /**
      * @param class-string $className
      * @param array<string, mixed> $parameters
      */
@@ -40,9 +45,19 @@ final class ObjectBuilder
         return new self($className, $parameters);
     }
 
+    /**
+     * @param array<string, mixed> $constraintOptions
+     */
+    public function with(string $paramName, array $constraintOptions): self
+    {
+        $this->constraints[$paramName] = $constraintOptions;
+
+        return $this;
+    }
+
     public function build(): object
     {
-        return $this->classBuilder->build($this->reflection, $this->parameters);
+        return $this->classBuilder->build($this->reflection, $this->parameters, $this->constraints);
     }
 
     /**
@@ -56,7 +71,6 @@ final class ObjectBuilder
             return new ReflectionClass($className);
             /** @phpstan-ignore-next-line */
         } catch (Throwable $exception) {
-            // ToDo teste ob, wie und wann die Exception geworfen wird
             throw new ObjectBuilderReflectionException($exception);
         }
     }

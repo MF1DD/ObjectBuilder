@@ -42,19 +42,34 @@ class StringBuilder implements DataTypeInterface
     private function createValue(): string
     {
         if ($this->property === null) {
-            return $this->generateRandomString(mt_rand(5, 20));
+            return $this->generateAlphanumericString(mt_rand(5, 20));
         }
 
-        return match (strtolower($this->property->name)) {
-            'timezone' => $this->randomTimezone(),
-            'countrycode' => $this->randomCountryCode(),
-            'datetime' => $this->randomDateTime(),
+        $minLen = $this->property->constraints?->minLength() ?? 5;
+        $maxLen = $this->property->constraints?->maxLength() ?? 20;
+        $length = mt_rand($minLen, $maxLen);
 
-            default => $this->generateRandomString(mt_rand(5, 20))
+        return match (true) {
+            $this->property->constraints?->format() === 'email' => $this->randomEmail(),
+            $this->property->constraints?->format() === 'url' => $this->randomUrl(),
+            $this->property->constraints?->format() === 'uuid' => $this->randomUuid(),
+            strtolower($this->property->name) === 'timezone' => $this->randomTimezone(),
+            strtolower($this->property->name) === 'countrycode' => $this->randomCountryCode(),
+            strtolower($this->property->name) === 'datetime' => $this->randomDateTime(),
+            strtolower($this->property->name) === 'email' => $this->randomEmail(),
+            strtolower($this->property->name) === 'url' => $this->randomUrl(),
+            strtolower($this->property->name) === 'uuid' => $this->randomUuid(),
+            strtolower($this->property->name) === 'phone' => $this->randomPhone(),
+            strtolower($this->property->name) === 'firstname' => $this->randomFirstName(),
+            strtolower($this->property->name) === 'lastname' => $this->randomLastName(),
+            strtolower($this->property->name) === 'city' => $this->randomCity(),
+            strtolower($this->property->name) === 'street' => $this->randomStreet(),
+            strtolower($this->property->name) === 'zip', strtolower($this->property->name) === 'postcode' => $this->randomPostalCode(),
+            default => $this->generateAlphanumericString($length),
         };
     }
 
-    private function generateRandomString(int $length): string
+    private function generateAlphanumericString(int $length): string
     {
         $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $randomString = '';
@@ -93,5 +108,68 @@ class StringBuilder implements DataTypeInterface
     private function randomDateTime(): string
     {
         return date('Y-m-d', mt_rand(strtotime('-1 year'), strtotime('now')));
+    }
+
+    private function randomEmail(): string
+    {
+        $domains = ['example.com', 'test.org', 'mail.net', 'demo.io'];
+        return sprintf(
+            '%s@%s',
+            strtolower($this->generateAlphanumericString(mt_rand(5, 10))),
+            $domains[array_rand($domains)]
+        );
+    }
+
+    private function randomUrl(): string
+    {
+        return sprintf(
+            'https://%s.%s/%s',
+            strtolower($this->generateAlphanumericString(mt_rand(4, 8))),
+            ['com', 'org', 'net', 'io'][array_rand([0, 1, 2, 3])],
+            strtolower($this->generateAlphanumericString(mt_rand(3, 8)))
+        );
+    }
+
+    private function randomUuid(): string
+    {
+        $data = random_bytes(16);
+        $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
+        $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
+        return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+    }
+
+    private function randomPhone(): string
+    {
+        return sprintf('+%d %d %d', mt_rand(1, 99), mt_rand(100, 999), mt_rand(1000000, 9999999));
+    }
+
+    private function randomFirstName(): string
+    {
+        $names = ['James', 'Mary', 'Robert', 'Patricia', 'John', 'Jennifer', 'Michael', 'Linda', 'David', 'Barbara', 'William', 'Elizabeth', 'Richard', 'Susan', 'Joseph', 'Jessica', 'Thomas', 'Sarah', 'Charles', 'Karen'];
+        return $names[array_rand($names)];
+    }
+
+    private function randomLastName(): string
+    {
+        $names = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez', 'Hernandez', 'Lopez', 'Gonzalez', 'Wilson', 'Anderson', 'Thomas', 'Taylor', 'Moore', 'Jackson', 'Martin'];
+        return $names[array_rand($names)];
+    }
+
+    private function randomCity(): string
+    {
+        $cities = ['Berlin', 'Hamburg', 'Munich', 'Cologne', 'Frankfurt', 'Stuttgart', 'Düsseldorf', 'Leipzig', 'Dortmund', 'Essen', 'London', 'Paris', 'Madrid', 'Rome', 'Amsterdam', 'Vienna', 'Prague', 'Warsaw', 'Budapest', 'Brussels'];
+        return $cities[array_rand($cities)];
+    }
+
+    private function randomStreet(): string
+    {
+        $names = ['Main', 'Oak', 'Maple', 'Cedar', 'Pine', 'Elm', 'Washington', 'Park', 'Lake', 'Hill', 'Broadway', 'First', 'Second', 'Third', 'Church', 'Market', 'High', 'Spring', 'West', 'North'];
+        $types = ['Street', 'Avenue', 'Road', 'Lane', 'Drive', 'Boulevard', 'Way', 'Court', 'Place', 'Circle'];
+        return sprintf('%s %s', $names[array_rand($names)], $types[array_rand($types)]);
+    }
+
+    private function randomPostalCode(): string
+    {
+        return (string)mt_rand(10000, 99999);
     }
 }
