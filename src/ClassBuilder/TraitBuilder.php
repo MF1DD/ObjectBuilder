@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Timelesstron\ObjectBuilder\ClassBuilder;
 
 use ReflectionClass;
+use RuntimeException;
 
 class TraitBuilder implements ClassBuilderInterface
 {
@@ -14,8 +15,22 @@ class TraitBuilder implements ClassBuilderInterface
      */
     public function build(ReflectionClass $class, array $parameters): object
     {
-        $anonClassWithTrait = sprintf('return new class { use %s; };', $class->getName());
+        $traitName = $class->getName();
+        $code = sprintf("<?php\nreturn new class { use %s; };", $traitName);
 
-        return eval($anonClassWithTrait);
+        $tmpFile = tempnam(sys_get_temp_dir(), 'obuild_trait_');
+        if ($tmpFile === false) {
+            throw new RuntimeException('Failed to create temporary file for trait builder.');
+        }
+
+        file_put_contents($tmpFile, $code);
+
+        try {
+            $result = include $tmpFile;
+        } finally {
+            unlink($tmpFile);
+        }
+
+        return $result;
     }
 }
