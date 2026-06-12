@@ -146,6 +146,10 @@ class ClassBuilder implements ClassBuilderInterface
         $object = $reflectionClass->newInstance();
 
         foreach ($reflectionClass->getProperties() as $property) {
+            if ($property->isReadOnly()) {
+                continue;
+            }
+
             if ($property->getType() instanceof ReflectionType) {
                 $value = $this->generateRandomValue($property);
 

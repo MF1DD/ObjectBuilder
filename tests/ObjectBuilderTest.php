@@ -12,6 +12,8 @@ use PHPUnit\Framework\TestCase;
 use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\Address;
 use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\Name;
 use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\Person;
+use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\ReadonlyPerson;
+use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\ReadonlyAddress;
 use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Interface\MyInterface;
 use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\StockClass;
 use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Trait\MyTrait;
@@ -152,5 +154,32 @@ class ObjectBuilderTest extends TestCase
         $this->assertInstanceOf(StockClass::class, $stockClass);
         $stockClass = ObjectBuilder::init(StockClass::class)->build();
         $this->assertInstanceOf(StockClass::class, $stockClass);
+    }
+
+    public function testReadonlyClass(): void
+    {
+        $person = ObjectBuilder::init(ReadonlyPerson::class)->build();
+        $this->assertInstanceOf(ReadonlyPerson::class, $person);
+        $this->assertIsString($person->name);
+        $this->assertIsInt($person->age);
+    }
+
+    public function testReadonlyClassWithNestedReadonlyObject(): void
+    {
+        $person = ObjectBuilder::init(ReadonlyPerson::class, [
+            'name' => 'Alice',
+            'age' => 30,
+            'address' => [
+                'street' => 'Main St',
+                'city' => 'Springfield',
+            ],
+        ])->build();
+
+        $this->assertInstanceOf(ReadonlyPerson::class, $person);
+        $this->assertSame('Alice', $person->name);
+        $this->assertSame(30, $person->age);
+        $this->assertInstanceOf(ReadonlyAddress::class, $person->address);
+        $this->assertSame('Main St', $person->address->street);
+        $this->assertSame('Springfield', $person->address->city);
     }
 }

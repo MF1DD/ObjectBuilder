@@ -3,7 +3,7 @@
     "description": "For automatically creating objects. Objects are created with random values",
     "type": "library",
     "require": {
-        "php": "^8.1"
+        "php": "^8.2"
     },
     "autoload": {
         "psr-4": {
