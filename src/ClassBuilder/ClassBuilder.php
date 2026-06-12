@@ -21,6 +21,7 @@ use Timelesstron\ObjectBuilder\Exceptions\ObjectBuilderWrongClassesGivenExceptio
 use Timelesstron\ObjectBuilder\Exceptions\UnknownOrBadFormatNotDeclaredClassException;
 use Timelesstron\ObjectBuilder\ObjectBuilder;
 use Timelesstron\ObjectBuilder\Services\DataTypeService;
+use Timelesstron\ObjectBuilder\Services\StockClassHandlerService;
 
 class ClassBuilder implements ClassBuilderInterface
 {
@@ -80,8 +81,12 @@ class ClassBuilder implements ClassBuilderInterface
             }
             $newInstance = $this->instantiateRandomStaticMethod($class);
             if ($newInstance === null || $newInstance === false) {
+                $handled = StockClassHandlerService::handle($class, $this->parameters, $exception);
+                if ($handled !== null) {
+                    return $handled;
+                }
+
                 return $this->tryExceptionSolver($class, $exception);
-                //                        throw $exception;
             }
 
             return $newInstance;
@@ -103,6 +108,18 @@ class ClassBuilder implements ClassBuilderInterface
             $propertyType = null;
         }
 
+        if (
+            $propertyType === '?' &&
+            array_key_exists($parameter->getName(), $this->parameters) &&
+            is_array($this->parameters[$parameter->getName()])
+        ) {
+            $allTypes = DataTypeService::getDataTypeFromString((string)$parameter->getType());
+            $classType = array_values(array_filter($allTypes ?? [], fn(string $t) => $t !== '?'));
+            if (!empty($classType)) {
+                $propertyType = $classType[0];
+            }
+        }
+
         $defaultValue = $this->getDefaultValue($parameter);
 
         $property = new Property(
@@ -122,10 +139,19 @@ class ClassBuilder implements ClassBuilderInterface
         }
 
         if (is_string($property->type) && (class_exists($property->type) || interface_exists($property->type))) {
-            return ObjectBuilder::init(
-                $property->type,
-                $property->value instanceof NoValueSet ? [] : $property->value
-            )->build();
+            if ($property->value instanceof NoValueSet) {
+                return ObjectBuilder::init($property->type)->build();
+            }
+
+            if (is_array($property->value)) {
+                return ObjectBuilder::init($property->type, $property->value)->build();
+            }
+
+            if (is_object($property->value)) {
+                return $property->value;
+            }
+
+            return ObjectBuilder::init($property->type)->build();
         }
 
         throw new ObjectBuilderDataTypeAndClassNotFoundException(
