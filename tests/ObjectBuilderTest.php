@@ -14,6 +14,7 @@ use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\Name;
 use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\Person;
 use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\ReadonlyPerson;
 use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\ReadonlyAddress;
+use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\AbstractVehicle;
 use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Interface\MyInterface;
 use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\StockClass;
 use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Trait\MyTrait;
@@ -190,5 +191,15 @@ class ObjectBuilderTest extends TestCase
         $this->assertInstanceOf(ReadonlyAddress::class, $person->address);
         $this->assertSame('Main St', $person->address->street);
         $this->assertSame('Springfield', $person->address->city);
+    }
+
+    public function testAbstractClass(): void
+    {
+        class_exists(AbstractVehicle::class);
+        class_exists(\Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\Car::class);
+
+        $vehicle = ObjectBuilder::init(AbstractVehicle::class)->build();
+        $this->assertInstanceOf(AbstractVehicle::class, $vehicle);
+        $this->assertIsString($vehicle->brand);
     }
 }

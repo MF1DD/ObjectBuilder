@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Timelesstron\ObjectBuilder\Services;
 
 use ReflectionClass;
+use Timelesstron\ObjectBuilder\ClassBuilder\AbstractClassBuilder;
 use Timelesstron\ObjectBuilder\ClassBuilder\ClassBuilder;
 use Timelesstron\ObjectBuilder\ClassBuilder\ClassBuilderInterface;
 use Timelesstron\ObjectBuilder\ClassBuilder\EnumBuilder;
@@ -22,6 +23,7 @@ class ClassBuilderService
             $reflection->isEnum() => new EnumBuilder(),
             $reflection->isTrait() => new TraitBuilder(),
             $reflection->isInterface() => new InterfaceBuilder(),
+            $reflection->isAbstract() => new AbstractClassBuilder(),
             default => new ClassBuilder(),
         };
     }
