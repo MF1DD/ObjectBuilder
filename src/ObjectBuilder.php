@@ -12,12 +12,9 @@ use Timelesstron\ObjectBuilder\Services\ClassBuilderService;
 
 final class ObjectBuilder
 {
-    /**
-     * @var ReflectionClass<object>
-     */
     private ReflectionClass $reflection;
 
-    private ClassBuilderInterface $classBuilder;
+    private ?ClassBuilderInterface $forcedBuilder = null;
 
     /**
      * @var array<string, array<string, mixed>>
@@ -33,7 +30,6 @@ final class ObjectBuilder
         private readonly array $parameters,
     ) {
         $this->reflection = $this->newReflectionClass($className);
-        $this->classBuilder = ClassBuilderService::getClassBuilder($this->reflection);
     }
 
     /**
@@ -43,6 +39,13 @@ final class ObjectBuilder
     public static function init(string $className, array $parameters = []): self
     {
         return new self($className, $parameters);
+    }
+
+    public function withBuilder(ClassBuilderInterface $builder): self
+    {
+        $this->forcedBuilder = $builder;
+
+        return $this;
     }
 
     /**
@@ -57,7 +60,9 @@ final class ObjectBuilder
 
     public function build(): object
     {
-        return $this->classBuilder->build($this->reflection, $this->parameters, $this->constraints);
+        $builder = $this->forcedBuilder ?? ClassBuilderService::getClassBuilder($this->reflection);
+
+        return $builder->build($this->reflection, $this->parameters, $this->constraints);
     }
 
     /**

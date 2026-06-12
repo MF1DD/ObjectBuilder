@@ -17,8 +17,17 @@ use Timelesstron\ObjectBuilder\DataTypes\StringBuilder;
 
 class DataTypeService
 {
+    /**
+     * @var array<string, DataTypeInterface>
+     */
+    private static array $customBuilders = [];
+
     public static function getDataTypeBuilder(?string $type): ?DataTypeInterface
     {
+        if ($type !== null && isset(self::$customBuilders[$type])) {
+            return self::$customBuilders[$type];
+        }
+
         return match ($type) {
             'int' => new IntegerBuilder(),
             'float' => new FloatBuilder(),
@@ -33,6 +42,16 @@ class DataTypeService
 
             default => null,
         };
+    }
+
+    public static function register(string $type, DataTypeInterface $builder): void
+    {
+        self::$customBuilders[$type] = $builder;
+    }
+
+    public static function reset(): void
+    {
+        self::$customBuilders = [];
     }
 
     /**
