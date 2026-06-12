@@ -1,0 +1,25 @@
+services:
+  app:
+    build: .
+    volumes:
+      - .:/app
+      - /app/vendor
+    working_dir: /app
+    tty: true
+
+  phpunit:
+    extends:
+      service: app
+    command: vendor/bin/phpunit
+
+  phpstan:
+    extends:
+      service: app
+    command: vendor/bin/phpstan analyse
+
+  test-coverage:
+    extends:
+      service: app
+    command: vendor/bin/phpunit --coverage-html reports/ --coverage-text
+    environment:
+      - XDEBUG_MODE=coverage

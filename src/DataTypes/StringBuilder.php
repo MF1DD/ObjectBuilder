@@ -77,7 +77,15 @@ class StringBuilder implements DataTypeInterface
      */
     private function randomCountryCode(): string
     {
-        $countries = ['DE', 'EN', 'ES', 'FR'];
+        $countries = [
+            'AF', 'AL', 'DZ', 'AR', 'AU', 'AT', 'BD', 'BE', 'BR', 'BG',
+            'CA', 'CL', 'CN', 'CO', 'HR', 'CZ', 'DK', 'EG', 'FI', 'FR',
+            'DE', 'GR', 'HK', 'HU', 'IN', 'ID', 'IR', 'IE', 'IL', 'IT',
+            'JP', 'KE', 'LU', 'MY', 'MX', 'MA', 'NL', 'NZ', 'NG', 'NO',
+            'PK', 'PE', 'PH', 'PL', 'PT', 'RO', 'RU', 'SA', 'RS', 'SG',
+            'ZA', 'KR', 'ES', 'SE', 'CH', 'TW', 'TH', 'TR', 'UA', 'AE',
+            'GB', 'US', 'VN',
+        ];
 
         return $countries[array_rand($countries)];
     }

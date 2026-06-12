@@ -87,6 +87,10 @@ final class FileContentHandler implements HandlerInterface
                 continue;
             }
 
+            if (str_starts_with(trim($contentRow), 'declare(strict_types=')) {
+                continue;
+            }
+
             if (str_contains($contentRow, 'namespace')) {
                 //                $newRowsOfContent[] = $this->addNamespaceToContent($contentRow);
                 $this->addNamespaceToContent($contentRow);
@@ -239,7 +243,7 @@ final class FileContentHandler implements HandlerInterface
     private function getMethodeName(string $contentRow): string
     {
         preg_match('/function (.*)\(/', $contentRow, $methodeName);
-        return trim($methodeName[1]);
+        return trim($methodeName[1] ?? '');
     }
 
     private function methodeWithGivenReturnObject(string $type, mixed $value): string

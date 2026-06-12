@@ -6,7 +6,7 @@ namespace Timelesstron\ObjectBuilder\ClassBuilder;
 
 use DateInterval;
 use DatePeriod;
-use PHPUnit\Event\InvalidArgumentException;
+use InvalidArgumentException;
 use ReflectionClass;
 use ReflectionMethod;
 use ReflectionParameter;
@@ -103,9 +103,7 @@ class ClassBuilder implements ClassBuilderInterface
             $propertyType = null;
         }
 
-        $defaultValue = new NoValueSet();
-        // todo: implement a function that enable default values
-        // [$this->getDefaultValue($parameter), null, null][array_rand([0,1,2])];
+        $defaultValue = $this->getDefaultValue($parameter);
 
         $property = new Property(
             name: $parameter->getName(),
@@ -218,7 +216,7 @@ class ClassBuilder implements ClassBuilderInterface
             return $parameter->getDefaultValue();
         }
 
-        return null;
+        return new NoValueSet();
     }
 
     /**
@@ -320,12 +318,17 @@ class ClassBuilder implements ClassBuilderInterface
         foreach ($parameters as $parameter) {
             if ($parameter[0] === '[') {
                 $first = substr($parameter, 1);
-                $newArray[] = $first === '' ? null : $first;
+                if ($first !== '') {
+                    $newArray[] = $first;
+                }
                 continue;
             }
 
             if (str_ends_with($parameter, ']')) {
-                $newArray[] = substr($parameter, 0, -1);
+                $last = substr($parameter, 0, -1);
+                if ($last !== '') {
+                    $newArray[] = $last;
+                }
                 $parameter = $newArray;
                 $newArray = [];
             }

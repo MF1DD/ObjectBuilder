@@ -1,0 +1,10 @@
+/vendor/
+/reports/
+/.git/
+/.idea/
+/.github/
+*.md
+.gitignore
+.dockerignore
+Dockerfile
+docker-compose.yml
