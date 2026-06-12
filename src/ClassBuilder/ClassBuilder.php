@@ -99,6 +99,12 @@ class ClassBuilder implements ClassBuilderInterface
 
         if ($propertyType !== null) {
             $propertyType = $propertyType[array_rand($propertyType)];
+
+            $propertyType = match ($propertyType) {
+                'self', 'static' => $parameter->getDeclaringClass()->getName(),
+                'parent' => $parameter->getDeclaringClass()->getParentClass()?->getName() ?? $propertyType,
+                default => $propertyType
+            };
         }
 
         if (

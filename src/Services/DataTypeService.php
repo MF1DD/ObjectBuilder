@@ -28,6 +28,7 @@ class DataTypeService
             'mixed' => new MixedBuilder(),
             'object' => new SimpleObjectBuilder(),
             'callback', 'callable' => new CallbackBuilder(),
+            'iterable' => new ArrayBuilder(),
             null, '?', 'null', '' => new NullBuilder(),
 
             default => null,
@@ -43,6 +44,7 @@ class DataTypeService
             $dataType === null => null,
             str_starts_with($dataType, '?') => ['?', ltrim($dataType, '?')], //[array_rand([0, 1])],
             str_contains($dataType, '|') => explode('|', $dataType), //[array_rand(explode('|', $dataType))],
+            str_contains($dataType, '&') => explode('&', $dataType),
 
             default => [$dataType],
         };
