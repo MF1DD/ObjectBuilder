@@ -156,6 +156,15 @@ class ObjectBuilderTest extends TestCase
         $this->assertInstanceOf(StockClass::class, $stockClass);
     }
 
+    public function testNewStockClasses(): void
+    {
+        $this->assertInstanceOf(\ReflectionFunction::class, ObjectBuilder::init(\ReflectionFunction::class)->build());
+        $this->assertInstanceOf(\ArrayObject::class, ObjectBuilder::init(\ArrayObject::class)->build());
+        $this->assertInstanceOf(\SplFileInfo::class, ObjectBuilder::init(\SplFileInfo::class)->build());
+        $this->assertInstanceOf(\DateTimeImmutable::class, ObjectBuilder::init(\DateTimeImmutable::class)->build());
+        $this->assertInstanceOf(\DateTime::class, ObjectBuilder::init(\DateTime::class)->build());
+    }
+
     public function testReadonlyClass(): void
     {
         $person = ObjectBuilder::init(ReadonlyPerson::class)->build();
