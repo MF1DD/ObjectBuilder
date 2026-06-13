@@ -1,52 +1,51 @@
 # ObjectBuilder
 
-Automatic object creation with random values for PHP 8.2+.
+Automatische Objekt-Erstellung mit Zufallswerten für PHP 8.2+.
 
-## Why?
+## Wofür?
 
-Manually creating test objects is repetitive, error-prone, and
-time-consuming — especially for deeply nested object graphs with
-dozens of properties. Every constructor change forces you to update
-all test fixtures.
+Manuelles Erstellen von Test-Objekten ist repetitiv, fehleranfällig und
+zeitraubend — besonders bei tief verschachtelten Objektgraphen mit
+Dutzenden Properties. Jede Änderung am Constructor zwingt zum
+Nachziehen aller Test-Fixtures.
 
-**ObjectBuilder** solves this: class name in, fully populated instance
-out. Recursive, type-safe, with semantically meaningful values.
+**ObjectBuilder** löst das: Klassenname rein, vollständig befüllte
+Instanz raus. Rekursiv, typsicher, mit semantisch sinnvollen Werten.
 
-## Advantages
+## Vorteile
 
-- **No boilerplate** — `ObjectBuilder::init(Foo::class)->build()`
-  instead of manual `new Foo(...)` with 10 parameters
-- **Type-safe** — reflection-based, supports all native and custom
-  types including enums, interfaces, traits, abstract, and readonly classes
-- **Deep object graphs** — nested dependencies are resolved
-  automatically and recursively (`Person → Address → Street`)
-- **Semantic values** — detects property names (`email`, `timezone`,
-  `firstname`) and generates matching random values
-- **Constraints** — value ranges and formats via the `with()` API:
+- **Kein Boilerplate** — `ObjectBuilder::init(Foo::class)->build()`
+  statt händischem `new Foo(...)` mit 10 Parametern
+- **Typsicher** — Reflection-basiert, alle nativen und benutzerdefinierten
+  Typen inkl. Enums, Interfaces, Traits, abstrakte und readonly-Klassen
+- **Tiefe Objektgraphen** — verschachtelte Abhängigkeiten werden
+  automatisch rekursiv aufgelöst (`Person → Address → Street`)
+- **Semantische Werte** — erkennt Property-Namen (`email`, `timezone`,
+  `firstname`) und liefert passende Zufallswerte
+- **Constraints** — Wertebereiche und Formate via `with()`-API:
   `->with('age', ['min' => 18, 'max' => 65])`
-- **Overridable** — set specific properties to fixed values while
-  keeping the rest random
-- **Extensible** — custom type builders and stock class handlers
-  can be registered, builders are swappable
-- **No framework** — pure PHP library, zero external runtime
-  dependencies except `nikic/php-parser`
+- **Überschreibbar** — einzelne Properties gezielt mit festen Werten
+  belegen, der Rest bleibt zufällig
+- **Erweiterbar** — eigene Typ-Builder und Stock-Class-Handler
+  registrierbar, Builder austauschbar
+- **Kein Framework** — reine PHP-Library, null externe Runtime-Dependencies
+  außer `nikic/php-parser`
 
-## Compatibility
+## Kompatibilität
 
-| PHP Version | Status |
+| PHP-Version | Status |
 |---|---|
-| 8.2 | Fully supported, CI-tested |
-| 8.3 | Fully supported, CI-tested |
-| 8.4 | Fully supported, CI-tested |
-| 8.5 | CI-tested (once available) |
+| 8.2 | Voll unterstützt, CI-getestet |
+| 8.3 | Voll unterstützt, CI-getestet |
+| 8.4 | Voll unterstützt, CI-getestet |
+| 8.5 | CI-getestet (sobald verfügbar) |
 
-- **Runtime dependency**: `nikic/php-parser ^5.0`
-- **No framework** (Symfony, Laravel, etc.) required
-- **Package name**: `mf1dd/object-builder`
+- **Runtime-Dependency**: `nikic/php-parser ^5.0`
+- **Kein Framework** (Symfony, Laravel, etc.) nötig
+- **Package-Name**: `mf1dd/object-builder`
 
 ## Basic Usage
-
-Simple classes are automatically populated with random values.
+Einfache Klassen werden automatisch mit zufälligen Werten befüllt.
 ```php
 class Address
 {
@@ -63,8 +62,8 @@ $result = ObjectBuilder::init(Address::class)->build();
 // returns instance of Address with random values
 ```
 
-You can override specific values. Unset values are generated randomly.
-Nested objects are resolved automatically.
+Du kannst bestimmte Werte überschreiben. Nicht gesetzte Werte werden zufällig generiert.
+Dabei werden auch verschachtelte Objekte automatisch aufgelöst.
 ```php
 class Person
 {
@@ -91,7 +90,7 @@ $result = ObjectBuilder::init(Person::class, [
 // $result->getAddress()->getZip() === random int|string
 ```
 
-## Enumerations
+## Enumeration
 ```php
 enum MyEnumeration: string
 {
@@ -104,7 +103,7 @@ enum MyEnumeration: string
 $result = ObjectBuilder::init(MyEnumeration::class)->build();
 // returns one of MyEnumeration cases
 ```
-You can specify which values the enum should use.
+Du kannst bei einem Enum den Wert bestimmen der Verwendet werden soll.
 ```php
 $result = ObjectBuilder::init(MyEnumeration::class, ['OK'])->build();
 // returns MyEnumeration::OK
@@ -113,29 +112,27 @@ $result = ObjectBuilder::init(MyEnumeration::class, ['WARNING', 'ERROR'])->build
 // returns one of MyEnumeration::WARNING|MyEnumeration::ERROR
 ```
 
-## Traits
-
-For traits, an anonymous class is created that uses the trait.
-Parameters passed to the TraitBuilder are ignored.
+## Trait
+Für übergebene Traits wird eine anonyme Klasse erzeugt die den Trait verwendet.
+Übergebene Parameter werden vom TraitBuilder nicht berücksichtigt.
 ```php
 $result = ObjectBuilder::init(MyTrait::class)->build();
 // returns {class@anonymous/...}
 ```
 
-## Interfaces
+## Interface
+Das übergebene Interface wird geladen und daraus dynamisch eine Klasse erzeugt.
+Diese liefert das Interface mit den benötigten Methoden zurück und implementiert das Interface.
 
-The given interface is loaded and a class is dynamically generated from it.
-It returns the interface with the required methods and implements the interface.
-
-The return value of methods is determined and a random value is assigned.
+Der Rückgabewert der Methoden wird ermittelt und den Methoden ein random Wert zugeteilt.
 ```php
 $result = ObjectBuilder::init(MyInterface::class)->build();
 // returns Object of MyInterfaceClass
-$value = $result->myMethod()
-// returns random value matching its return type.
+$value = $result->myMethode()
+// returns random value of his return type.
 ```
-You can specify which values the methods should return.
-Pass an array with the method name as the key.
+Du kannst bestimmen welche Werte die Methoden zurückliefern.
+Dazu übergibst du ein Array mit dem Methodennamen als key.
 ```php
 $options = [
     'getMyString' => 'testString'
@@ -146,7 +143,7 @@ $result = ObjectBuilder::init(MyInterface::class, $options)->build();
 $value = $result->getMyString()
 // returns 'testString'
 ```
-If a method returns an object and you want to set values in it, that works too.
+Gibt die Methode ein Object zurück in dem du werte setzen möchtest, geht das auch.
 ```php
 $options = [
     'getMyObject' => new SomeObject('Gustav', 27)
@@ -162,7 +159,7 @@ $value = $result->getMyObject()
  * }
  */
 ```
-It is also possible to pass individual parameters to the object.
+Es ist auch möglich die Parameter einzeln an das Object weiterzureichen.
 ```php
 $options = [
     'getMyObject' => ['name' => 'Bernhard']
@@ -180,9 +177,8 @@ $value = $result->getMyObject()
 ```
 
 ## Readonly Classes
-
-Readonly classes (PHP 8.2+) are supported. Properties are automatically
-populated in the constructor — including nested ones.
+Readonly-Klassen (PHP 8.2+) werden unterstützt. Properties werden automatisch
+im Konstruktor befüllt — auch verschachtelt.
 ```php
 readonly class ReadonlyPerson
 {
@@ -202,9 +198,8 @@ $result = ObjectBuilder::init(ReadonlyPerson::class, [
 ```
 
 ## Abstract Classes
-
-Abstract classes are resolved via existing concrete subclasses.
-The builder automatically finds a suitable implementation.
+Abstrakte Klassen werden über existierende konkrete Subklassen aufgelöst.
+Der Builder sucht automatisch eine passende Implementierung.
 ```php
 abstract class AbstractVehicle
 {
@@ -222,9 +217,8 @@ $result = ObjectBuilder::init(AbstractVehicle::class)->build();
 ```
 
 ## Stock Classes (PHP Built-Ins)
-
-Built-in PHP classes like DateInterval, DatePeriod, DateTime, DateTimeImmutable,
-ReflectionFunction, ArrayObject, and SplFileInfo are automatically supported.
+Built-in PHP-Klassen wie DateInterval, DatePeriod, DateTime, DateTimeImmutable,
+ReflectionFunction, ArrayObject und SplFileInfo werden automatisch unterstützt.
 ```php
 $interval = ObjectBuilder::init(DateInterval::class)->build();
 // returns DateInterval('P7D')
@@ -236,35 +230,33 @@ $ref = ObjectBuilder::init(ReflectionFunction::class)->build();
 // returns new ReflectionFunction('strlen')
 ```
 
-Custom handlers for additional stock classes can be registered:
+Eigene Handler für weitere Stock-Klassen können registriert werden:
 ```php
-use MF1DD\Application\Services\StockClassHandlerService;
+use MF1DD\ObjectBuilder\Services\StockClassHandlerService;
 
 StockClassHandlerService::register(new MyCustomHandler());
 ```
 
 ## Value Constraints (`with()`)
-
-The `with()` method allows setting constraints for value ranges.
+Mit der `with()`-Methode können Constraints für Wertebereiche gesetzt werden.
 ```php
-use MF1DD\UserInterface\ObjectBuilder;
+use MF1DD\ObjectBuilder\ObjectBuilder;
 
 $result = ObjectBuilder::init(Person::class)
     ->with('age', ['min' => 18, 'max' => 65])
     ->with('email', ['format' => 'email'])
     ->build();
-// $result->getAge() is between 18 and 65
-// $result->getEmail() is a random email address
+// $result->getAge() ist zwischen 18 und 65
+// $result->getEmail() ist eine zufällige E-Mail-Adresse
 ```
 
-Available constraints:
-- `min` / `max` — value range for int and float
-- `min_length` / `max_length` — string length
-- `format` — predefined formats: `email`, `url`, `uuid`
+Verfügbare Constraints:
+- `min` / `max` — Wertebereich für int und float
+- `min_length` / `max_length` — String-Länge
+- `format` — Vordefinierte Formate: `email`, `url`, `uuid`
 
 ## Semantic String Detection
-
-The StringBuilder recognizes specific property names and generates matching values:
+Der StringBuilder erkennt bestimmte Property-Namen und liefert passende Werte:
 ```php
 class User
 {
@@ -288,12 +280,11 @@ $result = ObjectBuilder::init(User::class)->build();
 ```
 
 ## Custom Type Builders
-
-Custom type builders can be registered for specific data types:
+Eigene Typ-Builder für spezielle Datentypen können registriert werden:
 ```php
-use MF1DD\Application\Services\DataTypeService;
-use MF1DD\Domain\DataTypeInterface;
-use MF1DD\Domain\Dto\Property;
+use MF1DD\ObjectBuilder\Services\DataTypeService;
+use MF1DD\ObjectBuilder\DataTypes\DataTypeInterface;
+use MF1DD\ObjectBuilder\Dto\Property;
 
 class CustomBuilder implements DataTypeInterface
 {
@@ -317,10 +308,9 @@ DataTypeService::register('custom_type', new CustomBuilder());
 ```
 
 ## Custom Builder Override
-
-The automatically selected builder can be overridden:
+Der automatisch gewählte Builder kann überschrieben werden:
 ```php
-use MF1DD\Domain\ClassBuilderInterface;
+use MF1DD\ObjectBuilder\ClassBuilder\ClassBuilderInterface;
 
 $result = ObjectBuilder::init(MyClass::class)
     ->withBuilder($myCustomBuilder)
