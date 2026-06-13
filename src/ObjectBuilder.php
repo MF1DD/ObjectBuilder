@@ -12,6 +12,9 @@ use MF1DD\ObjectBuilder\Services\ClassBuilderService;
 
 final class ObjectBuilder
 {
+    /**
+     * @var ReflectionClass<object>
+     */
     private ReflectionClass $reflection;
 
     private ?ClassBuilderInterface $forcedBuilder = null;

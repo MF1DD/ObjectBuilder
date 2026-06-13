@@ -28,8 +28,14 @@ use MF1DD\ObjectBuilder\Services\DataTypeService;
 
 final class FileContentHandler implements HandlerInterface
 {
+    /**
+     * @var ReflectionClass<object>
+     */
     private ReflectionClass $reflectionClass;
 
+    /**
+     * @var array<string, mixed>
+     */
     private array $parameters;
 
     private string $className;

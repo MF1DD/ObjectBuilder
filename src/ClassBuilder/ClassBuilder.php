@@ -15,6 +15,7 @@ use ReflectionType;
 use Throwable;
 use MF1DD\ObjectBuilder\ClassBuilder\Dto\NoValueSet;
 use MF1DD\ObjectBuilder\DataTypes\DataTypeInterface;
+use MF1DD\ObjectBuilder\Dto\Constraints;
 use MF1DD\ObjectBuilder\Dto\Property;
 use MF1DD\ObjectBuilder\Exceptions\ClassBuilder\ObjectBuilderDataTypeAndClassNotFoundException;
 use MF1DD\ObjectBuilder\Exceptions\ObjectBuilderWrongClassesGivenException;
@@ -107,9 +108,12 @@ class ClassBuilder implements ClassBuilderInterface
         if ($propertyType !== null) {
             $propertyType = $propertyType[array_rand($propertyType)];
 
+            $declaringClass = $parameter->getDeclaringClass();
             $propertyType = match ($propertyType) {
-                'self', 'static' => $parameter->getDeclaringClass()->getName(),
-                'parent' => $parameter->getDeclaringClass()->getParentClass()?->getName() ?? $propertyType,
+                'self', 'static' => $declaringClass ? $declaringClass->getName() : $propertyType,
+                'parent' => $declaringClass && ($parent = $declaringClass->getParentClass())
+                    ? $parent->getName()
+                    : $propertyType,
                 default => $propertyType
             };
         }
