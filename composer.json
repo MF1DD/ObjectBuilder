@@ -1,5 +1,5 @@
 {
-    "name": "timelesstron/object-builder",
+    "name": "mf1dd/object-builder",
     "description": "For automatically creating objects. Objects are created with random values",
     "type": "library",
     "require": {
@@ -8,12 +8,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Timelesstron\\ObjectBuilder\\": "src/"
+            "MF1DD\\ObjectBuilder\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Timelesstron\\ObjectBuilder\\Tests\\": "tests/"
+            "MF1DD\\ObjectBuilder\\Tests\\": "tests/"
         }
     },
     "require-dev": {

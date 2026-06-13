@@ -2,7 +2,7 @@
 
 ## 1. Übersicht: Wofür ist das Projekt da?
 
-**ObjectBuilder** (Packagist: `timelesstron/object-builder`) ist eine PHP-Bibliothek, die
+**ObjectBuilder** (Packagist: `mf1dd/object-builder`) ist eine PHP-Bibliothek, die
 automatisch Objekte mit zufälligen Werten erzeugt. Das primäre Anwendungsszenario sind
 Test-Fixtures: Statt händisch Testdaten für Domain-Objekte zu konstruieren, erzeugt der
 ObjectBuilder vollständig befüllte Instanzen beliebiger Klassen, Enums, Traits und

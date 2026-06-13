@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder\ClassBuilder\Dto;
+namespace MF1DD\ObjectBuilder\ClassBuilder\Dto;
 
-use Timelesstron\ObjectBuilder\Exceptions\ObjectBuilderWrongClassesGivenException;
+use MF1DD\ObjectBuilder\Exceptions\ObjectBuilderWrongClassesGivenException;
 
 class DataType
 {

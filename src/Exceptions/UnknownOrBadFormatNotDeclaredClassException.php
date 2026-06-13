@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder\Exceptions;
+namespace MF1DD\ObjectBuilder\Exceptions;
 
 use DomainException;
 use ReflectionClass;

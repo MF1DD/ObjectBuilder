@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder\Tests\ClassBuilder;
+namespace MF1DD\ObjectBuilder\Tests\ClassBuilder;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use Timelesstron\ObjectBuilder\ClassBuilder\EnumBuilder;
-use Timelesstron\ObjectBuilder\ObjectBuilder;
-use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\MyTestEnumeration;
+use MF1DD\ObjectBuilder\ClassBuilder\EnumBuilder;
+use MF1DD\ObjectBuilder\ObjectBuilder;
+use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\MyTestEnumeration;
 
 class EnumBuilderTest extends TestCase
 {

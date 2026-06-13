@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder;
+namespace MF1DD\ObjectBuilder;
 
 use ReflectionClass;
 use Throwable;
-use Timelesstron\ObjectBuilder\ClassBuilder\ClassBuilderInterface;
-use Timelesstron\ObjectBuilder\Exceptions\ObjectBuilderReflectionException;
-use Timelesstron\ObjectBuilder\Services\ClassBuilderService;
+use MF1DD\ObjectBuilder\ClassBuilder\ClassBuilderInterface;
+use MF1DD\ObjectBuilder\Exceptions\ObjectBuilderReflectionException;
+use MF1DD\ObjectBuilder\Services\ClassBuilderService;
 
 final class ObjectBuilder
 {

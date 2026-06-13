@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder\Tests\ClassBuilder;
+namespace MF1DD\ObjectBuilder\Tests\ClassBuilder;
 
 use PHPUnit\Framework\TestCase;
-use Timelesstron\ObjectBuilder\ClassBuilder\ClassBuilder;
-use Timelesstron\ObjectBuilder\Exceptions\ObjectBuilderWrongClassesGivenException;
-use Timelesstron\ObjectBuilder\ObjectBuilder;
-use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\Address;
-use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\PrivateConstruct;
-use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\PrivateConstructorClass;
+use MF1DD\ObjectBuilder\ClassBuilder\ClassBuilder;
+use MF1DD\ObjectBuilder\Exceptions\ObjectBuilderWrongClassesGivenException;
+use MF1DD\ObjectBuilder\ObjectBuilder;
+use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\Address;
+use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\PrivateConstruct;
+use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\PrivateConstructorClass;
 
 class ClassBuilderTest extends TestCase
 {

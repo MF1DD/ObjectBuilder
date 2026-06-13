@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder\ClassBuilder;
+namespace MF1DD\ObjectBuilder\ClassBuilder;
 
 use DateInterval;
 use DatePeriod;
@@ -13,15 +13,15 @@ use ReflectionParameter;
 use ReflectionProperty;
 use ReflectionType;
 use Throwable;
-use Timelesstron\ObjectBuilder\ClassBuilder\Dto\NoValueSet;
-use Timelesstron\ObjectBuilder\DataTypes\DataTypeInterface;
-use Timelesstron\ObjectBuilder\Dto\Property;
-use Timelesstron\ObjectBuilder\Exceptions\ClassBuilder\ObjectBuilderDataTypeAndClassNotFoundException;
-use Timelesstron\ObjectBuilder\Exceptions\ObjectBuilderWrongClassesGivenException;
-use Timelesstron\ObjectBuilder\Exceptions\UnknownOrBadFormatNotDeclaredClassException;
-use Timelesstron\ObjectBuilder\ObjectBuilder;
-use Timelesstron\ObjectBuilder\Services\DataTypeService;
-use Timelesstron\ObjectBuilder\Services\StockClassHandlerService;
+use MF1DD\ObjectBuilder\ClassBuilder\Dto\NoValueSet;
+use MF1DD\ObjectBuilder\DataTypes\DataTypeInterface;
+use MF1DD\ObjectBuilder\Dto\Property;
+use MF1DD\ObjectBuilder\Exceptions\ClassBuilder\ObjectBuilderDataTypeAndClassNotFoundException;
+use MF1DD\ObjectBuilder\Exceptions\ObjectBuilderWrongClassesGivenException;
+use MF1DD\ObjectBuilder\Exceptions\UnknownOrBadFormatNotDeclaredClassException;
+use MF1DD\ObjectBuilder\ObjectBuilder;
+use MF1DD\ObjectBuilder\Services\DataTypeService;
+use MF1DD\ObjectBuilder\Services\StockClassHandlerService;
 
 class ClassBuilder implements ClassBuilderInterface
 {

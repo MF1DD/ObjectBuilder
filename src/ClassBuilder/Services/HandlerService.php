@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder\ClassBuilder\Services;
+namespace MF1DD\ObjectBuilder\ClassBuilder\Services;
 
 use ReflectionClass;
-use Timelesstron\ObjectBuilder\ClassBuilder\Interface\FileContentHandler;
-use Timelesstron\ObjectBuilder\ClassBuilder\Interface\HandlerInterface;
-use Timelesstron\ObjectBuilder\ClassBuilder\Interface\ImplementedClassHandler;
-use Timelesstron\ObjectBuilder\ClassBuilder\Interface\ThrowableHandler;
-use Timelesstron\ObjectBuilder\Exceptions\InterfaceHandlerNotFoundException;
+use MF1DD\ObjectBuilder\ClassBuilder\Interface\FileContentHandler;
+use MF1DD\ObjectBuilder\ClassBuilder\Interface\HandlerInterface;
+use MF1DD\ObjectBuilder\ClassBuilder\Interface\ImplementedClassHandler;
+use MF1DD\ObjectBuilder\ClassBuilder\Interface\ThrowableHandler;
+use MF1DD\ObjectBuilder\Exceptions\InterfaceHandlerNotFoundException;
 
 final class HandlerService
 {

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder\ClassBuilder\Interface\StockClass;
+namespace MF1DD\ObjectBuilder\ClassBuilder\Interface\StockClass;
 
 use DateTime;
 use DateTimeImmutable;
 use ReflectionClass;
 use Throwable;
-use Timelesstron\ObjectBuilder\ClassBuilder\Interface\StockClassHandlerInterface;
+use MF1DD\ObjectBuilder\ClassBuilder\Interface\StockClassHandlerInterface;
 
 final class DateTimeImmutableHandler implements StockClassHandlerInterface
 {

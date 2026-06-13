@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder\Services;
+namespace MF1DD\ObjectBuilder\Services;
 
 use ReflectionClass;
-use Timelesstron\ObjectBuilder\ClassBuilder\AbstractClassBuilder;
-use Timelesstron\ObjectBuilder\ClassBuilder\ClassBuilder;
-use Timelesstron\ObjectBuilder\ClassBuilder\ClassBuilderInterface;
-use Timelesstron\ObjectBuilder\ClassBuilder\EnumBuilder;
-use Timelesstron\ObjectBuilder\ClassBuilder\InterfaceBuilder;
-use Timelesstron\ObjectBuilder\ClassBuilder\TraitBuilder;
+use MF1DD\ObjectBuilder\ClassBuilder\AbstractClassBuilder;
+use MF1DD\ObjectBuilder\ClassBuilder\ClassBuilder;
+use MF1DD\ObjectBuilder\ClassBuilder\ClassBuilderInterface;
+use MF1DD\ObjectBuilder\ClassBuilder\EnumBuilder;
+use MF1DD\ObjectBuilder\ClassBuilder\InterfaceBuilder;
+use MF1DD\ObjectBuilder\ClassBuilder\TraitBuilder;
 
 class ClassBuilderService
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder\Dto;
+namespace MF1DD\ObjectBuilder\Dto;
 
 class Property
 {

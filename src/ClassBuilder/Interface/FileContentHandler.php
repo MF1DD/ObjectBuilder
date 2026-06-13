@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder\ClassBuilder\Interface;
+namespace MF1DD\ObjectBuilder\ClassBuilder\Interface;
 
 use PhpParser\Node;
 use PhpParser\Node\ComplexType;
@@ -18,13 +18,13 @@ use PhpParser\ParserFactory;
 use PhpParser\PrettyPrinter\Standard;
 use ReflectionClass;
 use RuntimeException;
-use Timelesstron\ObjectBuilder\ClassBuilder\Dto\NoValueSet;
-use Timelesstron\ObjectBuilder\ClassBuilder\InterfaceBuilder;
-use Timelesstron\ObjectBuilder\Dto\Property;
-use Timelesstron\ObjectBuilder\Exceptions\InfinityInterfaceException;
-use Timelesstron\ObjectBuilder\Exceptions\ObjectBuilderUnknownClassTypeGivenException;
-use Timelesstron\ObjectBuilder\ObjectBuilder;
-use Timelesstron\ObjectBuilder\Services\DataTypeService;
+use MF1DD\ObjectBuilder\ClassBuilder\Dto\NoValueSet;
+use MF1DD\ObjectBuilder\ClassBuilder\InterfaceBuilder;
+use MF1DD\ObjectBuilder\Dto\Property;
+use MF1DD\ObjectBuilder\Exceptions\InfinityInterfaceException;
+use MF1DD\ObjectBuilder\Exceptions\ObjectBuilderUnknownClassTypeGivenException;
+use MF1DD\ObjectBuilder\ObjectBuilder;
+use MF1DD\ObjectBuilder\Services\DataTypeService;
 
 final class FileContentHandler implements HandlerInterface
 {

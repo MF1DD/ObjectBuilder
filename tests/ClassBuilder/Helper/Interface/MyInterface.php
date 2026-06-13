@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Interface;
+namespace MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Interface;
 
-use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\Address;
+use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\Address;
 
 interface MyInterface
 {

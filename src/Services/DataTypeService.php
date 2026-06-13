@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder\Services;
+namespace MF1DD\ObjectBuilder\Services;
 
-use Timelesstron\ObjectBuilder\DataTypes\ArrayBuilder;
-use Timelesstron\ObjectBuilder\DataTypes\BooleanBuilder;
-use Timelesstron\ObjectBuilder\DataTypes\CallbackBuilder;
-use Timelesstron\ObjectBuilder\DataTypes\DataTypeInterface;
-use Timelesstron\ObjectBuilder\DataTypes\FloatBuilder;
-use Timelesstron\ObjectBuilder\DataTypes\IntegerBuilder;
-use Timelesstron\ObjectBuilder\DataTypes\MixedBuilder;
-use Timelesstron\ObjectBuilder\DataTypes\NullBuilder;
-use Timelesstron\ObjectBuilder\DataTypes\SimpleObjectBuilder;
-use Timelesstron\ObjectBuilder\DataTypes\StringBuilder;
+use MF1DD\ObjectBuilder\DataTypes\ArrayBuilder;
+use MF1DD\ObjectBuilder\DataTypes\BooleanBuilder;
+use MF1DD\ObjectBuilder\DataTypes\CallbackBuilder;
+use MF1DD\ObjectBuilder\DataTypes\DataTypeInterface;
+use MF1DD\ObjectBuilder\DataTypes\FloatBuilder;
+use MF1DD\ObjectBuilder\DataTypes\IntegerBuilder;
+use MF1DD\ObjectBuilder\DataTypes\MixedBuilder;
+use MF1DD\ObjectBuilder\DataTypes\NullBuilder;
+use MF1DD\ObjectBuilder\DataTypes\SimpleObjectBuilder;
+use MF1DD\ObjectBuilder\DataTypes\StringBuilder;
 
 class DataTypeService
 {

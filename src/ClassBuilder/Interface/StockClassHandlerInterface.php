@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder\ClassBuilder\Interface;
+namespace MF1DD\ObjectBuilder\ClassBuilder\Interface;
 
 use ReflectionClass;
 use Throwable;

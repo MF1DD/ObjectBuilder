@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder\Services;
+namespace MF1DD\ObjectBuilder\Services;
 
 use ReflectionClass;
 use Throwable;
-use Timelesstron\ObjectBuilder\ClassBuilder\Interface\StockClass\ArrayObjectHandler;
-use Timelesstron\ObjectBuilder\ClassBuilder\Interface\StockClass\DateIntervalHandler;
-use Timelesstron\ObjectBuilder\ClassBuilder\Interface\StockClass\DatePeriodHandler;
-use Timelesstron\ObjectBuilder\ClassBuilder\Interface\StockClass\DateTimeImmutableHandler;
-use Timelesstron\ObjectBuilder\ClassBuilder\Interface\StockClass\ReflectionFunctionHandler;
-use Timelesstron\ObjectBuilder\ClassBuilder\Interface\StockClass\SplFileInfoHandler;
-use Timelesstron\ObjectBuilder\ClassBuilder\Interface\StockClassHandlerInterface;
+use MF1DD\ObjectBuilder\ClassBuilder\Interface\StockClass\ArrayObjectHandler;
+use MF1DD\ObjectBuilder\ClassBuilder\Interface\StockClass\DateIntervalHandler;
+use MF1DD\ObjectBuilder\ClassBuilder\Interface\StockClass\DatePeriodHandler;
+use MF1DD\ObjectBuilder\ClassBuilder\Interface\StockClass\DateTimeImmutableHandler;
+use MF1DD\ObjectBuilder\ClassBuilder\Interface\StockClass\ReflectionFunctionHandler;
+use MF1DD\ObjectBuilder\ClassBuilder\Interface\StockClass\SplFileInfoHandler;
+use MF1DD\ObjectBuilder\ClassBuilder\Interface\StockClassHandlerInterface;
 
 final class StockClassHandlerService
 {

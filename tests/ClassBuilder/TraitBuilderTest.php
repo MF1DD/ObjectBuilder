@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder\Tests\ClassBuilder;
+namespace MF1DD\ObjectBuilder\Tests\ClassBuilder;
 
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use Timelesstron\ObjectBuilder\ClassBuilder\TraitBuilder;
-use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\MyTestTrait;
+use MF1DD\ObjectBuilder\ClassBuilder\TraitBuilder;
+use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\MyTestTrait;
 
 class TraitBuilderTest extends TestCase
 {

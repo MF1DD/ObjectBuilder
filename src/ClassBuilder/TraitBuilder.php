@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder\ClassBuilder;
+namespace MF1DD\ObjectBuilder\ClassBuilder;
 
 use ReflectionClass;
 use RuntimeException;

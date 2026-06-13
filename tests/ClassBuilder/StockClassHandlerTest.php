@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder\Tests\ClassBuilder;
+namespace MF1DD\ObjectBuilder\Tests\ClassBuilder;
 
 use DateInterval;
 use DatePeriod;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use Timelesstron\ObjectBuilder\ClassBuilder\Interface\StockClassHandlerInterface;
-use Timelesstron\ObjectBuilder\ObjectBuilder;
-use Timelesstron\ObjectBuilder\Services\StockClassHandlerService;
+use MF1DD\ObjectBuilder\ClassBuilder\Interface\StockClassHandlerInterface;
+use MF1DD\ObjectBuilder\ObjectBuilder;
+use MF1DD\ObjectBuilder\Services\StockClassHandlerService;
 use Throwable;
 
 class StockClassHandlerTest extends TestCase

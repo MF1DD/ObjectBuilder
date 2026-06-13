@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Entity;
+namespace MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Entity;
 
 use DateTimeImmutable;
-use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Enums\MyEnum;
-use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Interface\MyInterface;
-use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Trait\MyTrait;
+use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Enums\MyEnum;
+use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Interface\MyInterface;
+use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Trait\MyTrait;
 
 class Person
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder\ClassBuilder;
+namespace MF1DD\ObjectBuilder\ClassBuilder;
 
 use ReflectionClass;
-use Timelesstron\ObjectBuilder\ClassBuilder\Services\HandlerService;
+use MF1DD\ObjectBuilder\ClassBuilder\Services\HandlerService;
 
 class InterfaceBuilder implements ClassBuilderInterface
 {

@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder\Tests\ClassBuilder;
+namespace MF1DD\ObjectBuilder\Tests\ClassBuilder;
 
 
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use Timelesstron\ObjectBuilder\ClassBuilder\InterfaceBuilder;
-use Timelesstron\ObjectBuilder\Exceptions\InfinityInterfaceException;
-use Timelesstron\ObjectBuilder\ObjectBuilder;
-use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\Address;
-use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Interface\EmptyTestInterface;
-use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Interface\InfinityInterface;
-use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Interface\MyInterface;
-use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Interface\Selectable;
-use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Interface\SimpleReturnObjectTestInterface;
-use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Interface\SimpleReturnValueTestInterface;
-use Timelesstron\ObjectBuilder\Tests\ClassBuilder\Helper\Interface\SimpleTestInterface;
+use MF1DD\ObjectBuilder\ClassBuilder\InterfaceBuilder;
+use MF1DD\ObjectBuilder\Exceptions\InfinityInterfaceException;
+use MF1DD\ObjectBuilder\ObjectBuilder;
+use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\Address;
+use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Interface\EmptyTestInterface;
+use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Interface\InfinityInterface;
+use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Interface\MyInterface;
+use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Interface\Selectable;
+use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Interface\SimpleReturnObjectTestInterface;
+use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Interface\SimpleReturnValueTestInterface;
+use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Interface\SimpleTestInterface;
 
 class InterfaceBuilderTest extends TestCase
 {

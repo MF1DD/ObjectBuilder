@@ -189,7 +189,7 @@ $ref = ObjectBuilder::init(ReflectionFunction::class)->build();
 
 Eigene Handler für weitere Stock-Klassen können registriert werden:
 ```php
-use Timelesstron\ObjectBuilder\Services\StockClassHandlerService;
+use MF1DD\ObjectBuilder\Services\StockClassHandlerService;
 
 StockClassHandlerService::register(new MyCustomHandler());
 ```
@@ -197,7 +197,7 @@ StockClassHandlerService::register(new MyCustomHandler());
 ## Value Constraints (`with()`)
 Mit der `with()`-Methode können Constraints für Wertebereiche gesetzt werden.
 ```php
-use Timelesstron\ObjectBuilder\ObjectBuilder;
+use MF1DD\ObjectBuilder\ObjectBuilder;
 
 $result = ObjectBuilder::init(Person::class)
     ->with('age', ['min' => 18, 'max' => 65])
@@ -239,9 +239,9 @@ $result = ObjectBuilder::init(User::class)->build();
 ## Custom Type Builders
 Eigene Typ-Builder für spezielle Datentypen können registriert werden:
 ```php
-use Timelesstron\ObjectBuilder\Services\DataTypeService;
-use Timelesstron\ObjectBuilder\DataTypes\DataTypeInterface;
-use Timelesstron\ObjectBuilder\Dto\Property;
+use MF1DD\ObjectBuilder\Services\DataTypeService;
+use MF1DD\ObjectBuilder\DataTypes\DataTypeInterface;
+use MF1DD\ObjectBuilder\Dto\Property;
 
 class CustomBuilder implements DataTypeInterface
 {
@@ -267,7 +267,7 @@ DataTypeService::register('custom_type', new CustomBuilder());
 ## Custom Builder Override
 Der automatisch gewählte Builder kann überschrieben werden:
 ```php
-use Timelesstron\ObjectBuilder\ClassBuilder\ClassBuilderInterface;
+use MF1DD\ObjectBuilder\ClassBuilder\ClassBuilderInterface;
 
 $result = ObjectBuilder::init(MyClass::class)
     ->withBuilder($myCustomBuilder)

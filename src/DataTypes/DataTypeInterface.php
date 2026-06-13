@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Timelesstron\ObjectBuilder\DataTypes;
+namespace MF1DD\ObjectBuilder\DataTypes;
 
-use Timelesstron\ObjectBuilder\Dto\Property;
+use MF1DD\ObjectBuilder\Dto\Property;
 
 interface DataTypeInterface
 {
