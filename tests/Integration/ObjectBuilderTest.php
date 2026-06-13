@@ -18,6 +18,8 @@ use MF1DD\Tests\Helper\AbstractVehicle;
 use MF1DD\Tests\Helper\MyInterface;
 use MF1DD\Tests\Helper\StockClass;
 use MF1DD\Tests\Helper\MyTrait;
+use MF1DD\Tests\Helper\MyTestEnumeration;
+use MF1DD\Tests\Helper\SimpleTestInterface;
 
 class ObjectBuilderTest extends TestCase
 {
@@ -183,5 +185,68 @@ class ObjectBuilderTest extends TestCase
         $vehicle = ObjectBuilder::init(AbstractVehicle::class)->build();
         $this->assertInstanceOf(AbstractVehicle::class, $vehicle);
         $this->assertIsString($vehicle->brand);
+    }
+
+    public function testAddressWithAllProps(): void
+    {
+        $addr = ObjectBuilder::init(Address::class, [
+            'street' => 'Test St',
+            'zip' => 12345,
+            'city' => 'Test City',
+            'country' => 'DE',
+            'mainResidence' => true,
+        ])->build();
+        $this->assertSame('Test St', $addr->getStreet());
+        $this->assertSame(12345, $addr->getZip());
+        $this->assertSame('Test City', $addr->getCity());
+        $this->assertSame('DE', $addr->getCountry());
+        $this->assertTrue($addr->isMainResidence());
+    }
+
+    public function testAddressWithStringZip(): void
+    {
+        $addr = ObjectBuilder::init(Address::class, [
+            'zip' => 'ABC123',
+        ])->build();
+        $this->assertSame('ABC123', $addr->getZip());
+    }
+
+    public function testEnumExactValue(): void
+    {
+        $e = ObjectBuilder::init(MyTestEnumeration::class, ['OK'])->build();
+        $this->assertSame(MyTestEnumeration::OK, $e);
+    }
+
+    public function testTraitPropertyAccess(): void
+    {
+        $trait = ObjectBuilder::init(MyTrait::class)->build();
+        $this->assertSame('MyTrait', $trait->trait);
+        $this->assertIsObject($trait);
+    }
+
+    public function testReadonlyPersonAllPropsSet(): void
+    {
+        $p = ObjectBuilder::init(ReadonlyPerson::class, [
+            'name' => 'Foo', 'age' => 99, 'address' => null,
+        ])->build();
+        $this->assertSame('Foo', $p->name);
+        $this->assertSame(99, $p->age);
+        $this->assertNull($p->address);
+    }
+
+    public function testWithConstraintAllEqual(): void
+    {
+        for ($i = 0; $i < 3; $i++) {
+            $p = ObjectBuilder::init(ReadonlyPerson::class)
+                ->with('age', ['min' => 42, 'max' => 42])
+                ->build();
+            $this->assertSame(42, $p->age);
+        }
+    }
+
+    public function testInterfaceBuilderWithStaticMethod(): void
+    {
+        $result = ObjectBuilder::init(SimpleTestInterface::class)->build();
+        $this->assertNull($result::post());
     }
 }
