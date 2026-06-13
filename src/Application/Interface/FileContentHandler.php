@@ -260,7 +260,9 @@ final class FileContentHandler implements HandlerInterface
             private function buildReturnExpression(string $methodName, string $returnTypeString): string
             {
                 $returnTypes = DataTypeService::getDataTypeFromString($returnTypeString);
-                $resolvedType = $returnTypes[array_rand($returnTypes)];
+                $resolvedType = $returnTypes !== null && $returnTypes !== []
+                    ? $returnTypes[array_rand($returnTypes)]
+                    : 'string';
 
                 $property = new Property(
                     name: $methodName,
@@ -372,6 +374,9 @@ final class FileContentHandler implements HandlerInterface
     public function getReturnType(?string $dataType): string
     {
         $returnTypes = DataTypeService::getDataTypeFromString($dataType);
+        if ($returnTypes === null || $returnTypes === []) {
+            return 'string';
+        }
 
         return $returnTypes[array_rand($returnTypes)];
     }
