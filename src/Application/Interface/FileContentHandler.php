@@ -302,7 +302,7 @@ final class FileContentHandler implements HandlerInterface
                         return sprintf(
                             '%s%s::init(%s::class, %s)->build()',
                             $nsPrefix,
-                            \MF1DD\UserInterface\ObjectBuilder::class,
+                            'MF1DD\\UserInterface\\ObjectBuilder',
                             $type,
                             var_export($value, true)
                         );
@@ -335,7 +335,7 @@ final class FileContentHandler implements HandlerInterface
                 return sprintf(
                     '%s%s::init(%s::class)->build()',
                     $nsPrefix,
-                    \MF1DD\UserInterface\ObjectBuilder::class,
+                    'MF1DD\\UserInterface\\ObjectBuilder',
                     $type
                 );
             }
