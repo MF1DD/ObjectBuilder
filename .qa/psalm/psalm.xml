@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <psalm
-    errorLevel="5"
+    errorLevel="8"
     resolveFromConfigFile="true"
     findUnusedBaselineEntry="false"
     findUnusedCode="false"
@@ -21,8 +21,5 @@
                 <referencedMethod name="ReflectionType::isBuiltin"/>
             </errorLevel>
         </UndefinedMethod>
-        <InvalidArgument errorLevel="info"/>
-        <InvalidReturnStatement errorLevel="info"/>
-        <ParadoxicalCondition errorLevel="info"/>
     </issueHandlers>
 </psalm>

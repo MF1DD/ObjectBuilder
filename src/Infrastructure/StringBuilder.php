@@ -65,7 +65,8 @@ class StringBuilder implements DataTypeInterface
             strtolower((string) $this->property->name) === 'lastname' => $this->randomLastName(),
             strtolower((string) $this->property->name) === 'city' => $this->randomCity(),
             strtolower((string) $this->property->name) === 'street' => $this->randomStreet(),
-            strtolower((string) $this->property->name) === 'zip', strtolower((string) $this->property->name) === 'postcode' => $this->randomPostalCode(),
+            strtolower((string) $this->property->name) === 'zip' => $this->randomPostalCode(),
+            strtolower((string) $this->property->name) === 'postcode' => $this->randomPostalCode(),
             default => $this->generateAlphanumericString($length),
         };
     }
