@@ -23,7 +23,7 @@ use MF1DD\Domain\Exceptions\ObjectBuilderWrongClassesGivenException;
 use MF1DD\Domain\Exceptions\UnknownOrBadFormatNotDeclaredClassException;
 use MF1DD\Application\Services\DataTypeService;
 use MF1DD\Application\Services\StockClassHandlerService;
-use MF1DD\UserInterface\ObjectBuilder;
+use MF1DD\Application\Services\ObjectBuildService;
 
 class ClassBuilder implements ClassBuilderInterface
 {
@@ -179,18 +179,18 @@ class ClassBuilder implements ClassBuilderInterface
 
         if (is_string($property->type) && (class_exists($property->type) || interface_exists($property->type))) {
             if ($property->value instanceof NoValueSet) {
-                return ObjectBuilder::init($property->type)->build();
+                return ObjectBuildService::build($property->type);
             }
 
             if (is_array($property->value)) {
-                return ObjectBuilder::init($property->type, $property->value)->build();
+                return ObjectBuildService::build($property->type, $property->value);
             }
 
             if (is_object($property->value)) {
                 return $property->value;
             }
 
-            return ObjectBuilder::init($property->type)->build();
+            return ObjectBuildService::build($property->type);
         }
 
         throw new ObjectBuilderDataTypeAndClassNotFoundException(
@@ -338,7 +338,7 @@ class ClassBuilder implements ClassBuilderInterface
                     if (is_string($property->type) && (class_exists($property->type) || interface_exists(
                         $property->type
                     ))) {
-                        $newParameters[] = ObjectBuilder::init(
+                        $newParameters[] = ObjectBuildService::build(
                             $property->type,
                             $property->value instanceof NoValueSet ? [] : $property->value
                         )->build();

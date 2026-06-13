@@ -1,12 +1,6 @@
-
-imports:
-  - ./deptrac.baseline.yaml
-
-parameters:
-  strict: true
+deptrac:
   paths:
     - ./../../src/
-
   exclude_files:
     - '#.*test.*#'
 

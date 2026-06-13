@@ -7,7 +7,7 @@ namespace MF1DD\Application;
 use ReflectionClass;
 use MF1DD\Domain\ClassBuilderInterface;
 use MF1DD\Domain\Exceptions\ObjectBuilderWrongClassesGivenException;
-use MF1DD\UserInterface\ObjectBuilder;
+use MF1DD\Application\Services\ObjectBuildService;
 
 class AbstractClassBuilder implements ClassBuilderInterface
 {
@@ -38,6 +38,6 @@ class AbstractClassBuilder implements ClassBuilderInterface
         }
 
         $selectedClass = $concreteClasses[array_rand($concreteClasses)];
-        return ObjectBuilder::init($selectedClass, $parameters)->build();
+        return ObjectBuildService::build($selectedClass, $parameters);
     }
 }

@@ -4,19 +4,11 @@ declare(strict_types=1);
 
 namespace MF1DD\UserInterface;
 
-use ReflectionClass;
-use Throwable;
 use MF1DD\Domain\ClassBuilderInterface;
-use MF1DD\Domain\Exceptions\ObjectBuilderReflectionException;
-use MF1DD\Application\Services\ClassBuilderService;
+use MF1DD\Application\Services\ObjectBuildService;
 
 final class ObjectBuilder
 {
-    /**
-     * @var ReflectionClass<object>
-     */
-    private readonly ReflectionClass $reflection;
-
     private ?ClassBuilderInterface $forcedBuilder = null;
 
     /**
@@ -29,10 +21,9 @@ final class ObjectBuilder
      * @param array<string, mixed> $parameters
      */
     private function __construct(
-        string $className,
+        private readonly string $className,
         private readonly array $parameters,
     ) {
-        $this->reflection = $this->newReflectionClass($className);
     }
 
     /**
@@ -63,23 +54,11 @@ final class ObjectBuilder
 
     public function build(): object
     {
-        $builder = $this->forcedBuilder ?? ClassBuilderService::getClassBuilder($this->reflection);
-
-        return $builder->build($this->reflection, $this->parameters, $this->constraints);
-    }
-
-    /**
-     * @param class-string $className
-     *
-     * @return ReflectionClass<object>
-     */
-    public function newReflectionClass(string $className): ReflectionClass
-    {
-        try {
-            return new ReflectionClass($className);
-            /** @phpstan-ignore-next-line */
-        } catch (Throwable $exception) {
-            throw new ObjectBuilderReflectionException($exception);
-        }
+        return ObjectBuildService::build(
+            $this->className,
+            $this->parameters,
+            $this->constraints,
+            $this->forcedBuilder,
+        );
     }
 }

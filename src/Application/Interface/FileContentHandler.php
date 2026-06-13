@@ -26,7 +26,7 @@ use MF1DD\Domain\Exceptions\ObjectBuilderUnknownClassTypeGivenException;
 use MF1DD\Domain\HandlerInterface;
 use MF1DD\Application\InterfaceBuilder;
 use MF1DD\Application\Services\DataTypeService;
-use MF1DD\UserInterface\ObjectBuilder;
+use MF1DD\Application\Services\ObjectBuildService;
 
 final class FileContentHandler implements HandlerInterface
 {
@@ -302,7 +302,7 @@ final class FileContentHandler implements HandlerInterface
                         return sprintf(
                             '%s%s::init(%s::class, %s)->build()',
                             $nsPrefix,
-                            ObjectBuilder::class,
+                            'MF1DD\\UserInterface\\ObjectBuilder',
                             $type,
                             var_export($value, true)
                         );
@@ -325,7 +325,7 @@ final class FileContentHandler implements HandlerInterface
                     if (class_exists($returnTypeWithNamespace) || interface_exists($returnTypeWithNamespace)) {
                         return sprintf(
                             'unserialize(\'%s\')',
-                            serialize(ObjectBuilder::init($returnTypeWithNamespace)->build())
+                            serialize(ObjectBuildService::build($returnTypeWithNamespace))
                         );
                     }
 
@@ -335,7 +335,7 @@ final class FileContentHandler implements HandlerInterface
                 return sprintf(
                     '%s%s::init(%s::class)->build()',
                     $nsPrefix,
-                    ObjectBuilder::class,
+                    'MF1DD\\UserInterface\\ObjectBuilder',
                     $type
                 );
             }

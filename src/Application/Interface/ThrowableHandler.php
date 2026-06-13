@@ -7,7 +7,7 @@ namespace MF1DD\Application\Interface;
 use Exception;
 use ReflectionClass;
 use MF1DD\Domain\HandlerInterface;
-use MF1DD\UserInterface\ObjectBuilder;
+use MF1DD\Application\Services\ObjectBuildService;
 
 final class ThrowableHandler implements HandlerInterface
 {
@@ -17,10 +17,10 @@ final class ThrowableHandler implements HandlerInterface
      */
     public function execute(ReflectionClass $reflectionClass, array $parameters): object
     {
-        return ObjectBuilder::init(Exception::class, [
+        return ObjectBuildService::build(Exception::class, [
             ...$parameters,
             'previous' => null,
-        ])->build();
+        ]);
     }
 
     /**
