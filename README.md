@@ -1,5 +1,48 @@
 # ObjectBuilder
-For automatically creating objects. Objects are created with random values.
+
+Automatische Objekt-Erstellung mit Zufallswerten für PHP 8.2+.
+
+## Wofür?
+
+Manuelles Erstellen von Test-Objekten ist repetitiv, fehleranfällig und
+zeitraubend — besonders bei tief verschachtelten Objektgraphen mit
+Dutzenden Properties. Jede Änderung am Constructor zwingt zum
+Nachziehen aller Test-Fixtures.
+
+**ObjectBuilder** löst das: Klassenname rein, vollständig befüllte
+Instanz raus. Rekursiv, typsicher, mit semantisch sinnvollen Werten.
+
+## Vorteile
+
+- **Kein Boilerplate** — `ObjectBuilder::init(Foo::class)->build()`
+  statt händischem `new Foo(...)` mit 10 Parametern
+- **Typsicher** — Reflection-basiert, alle nativen und benutzerdefinierten
+  Typen inkl. Enums, Interfaces, Traits, abstrakte und readonly-Klassen
+- **Tiefe Objektgraphen** — verschachtelte Abhängigkeiten werden
+  automatisch rekursiv aufgelöst (`Person → Address → Street`)
+- **Semantische Werte** — erkennt Property-Namen (`email`, `timezone`,
+  `firstname`) und liefert passende Zufallswerte
+- **Constraints** — Wertebereiche und Formate via `with()`-API:
+  `->with('age', ['min' => 18, 'max' => 65])`
+- **Überschreibbar** — einzelne Properties gezielt mit festen Werten
+  belegen, der Rest bleibt zufällig
+- **Erweiterbar** — eigene Typ-Builder und Stock-Class-Handler
+  registrierbar, Builder austauschbar
+- **Kein Framework** — reine PHP-Library, null externe Runtime-Dependencies
+  außer `nikic/php-parser`
+
+## Kompatibilität
+
+| PHP-Version | Status |
+|---|---|
+| 8.2 | Voll unterstützt, CI-getestet |
+| 8.3 | Voll unterstützt, CI-getestet |
+| 8.4 | Voll unterstützt, CI-getestet |
+| 8.5 | CI-getestet (sobald verfügbar) |
+
+- **Runtime-Dependency**: `nikic/php-parser ^5.0`
+- **Kein Framework** (Symfony, Laravel, etc.) nötig
+- **Package-Name**: `mf1dd/object-builder`
 
 ## Basic Usage
 Einfache Klassen werden automatisch mit zufälligen Werten befüllt.
