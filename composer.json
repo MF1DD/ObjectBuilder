@@ -2,6 +2,7 @@
     "name": "mf1dd/object-builder",
     "description": "For automatically creating objects. Objects are created with random values",
     "type": "library",
+    "license": "MIT",
     "require": {
         "php": "^8.2",
         "nikic/php-parser": "^5.0"

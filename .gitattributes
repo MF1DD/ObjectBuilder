@@ -1,0 +1,17 @@
+# Exclude from Composer distribution
+/.github               export-ignore
+/tests                 export-ignore
+/reports               export-ignore
+/.gitignore            export-ignore
+/.gitattributes        export-ignore
+/.dockerignore         export-ignore
+/Dockerfile            export-ignore
+/docker-compose.yml    export-ignore
+/Makefile              export-ignore
+/bootstrap.php         export-ignore
+/phpunit.xml           export-ignore
+/phpstan.neon          export-ignore
+/ecs.php               export-ignore
+/Report.md             export-ignore
+/ToDo.md               export-ignore
+/.phpunit.result.cache export-ignore
