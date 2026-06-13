@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<psalm
+    errorLevel="4"
+    resolveFromConfigFile="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+>
+    <projectFiles>
+        <directory name="src"/>
+        <ignoreFiles>
+            <directory name="vendor"/>
+        </ignoreFiles>
+    </projectFiles>
+    <issueHandlers>
+        <UndefinedMagicMethod>
+            <errorLevel type="suppress">
+                <referencedMethod name="ReflectionEnumUnitCase::cases"/>
+            </errorLevel>
+        </UndefinedMagicMethod>
+        <MissingOverrideAttribute>
+            <errorLevel type="suppress"/>
+        </MissingOverrideAttribute>
+        <UnusedClass>
+            <errorLevel type="suppress"/>
+        </UnusedClass>
+        <PossiblyUnusedMethod>
+            <errorLevel type="suppress"/>
+        </PossiblyUnusedMethod>
+        <UnusedVariable>
+            <errorLevel type="suppress"/>
+        </UnusedVariable>
+    </issueHandlers>
+</psalm>

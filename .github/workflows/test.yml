@@ -86,3 +86,83 @@ jobs:
 
       - name: Run Infection
         run: vendor/bin/infection --no-progress --min-msi=40 --min-covered-msi=45 --threads=4
+
+  psalm:
+    name: Static Analysis (Psalm)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, intl
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Run Psalm
+        run: vendor/bin/psalm --no-progress --show-info=false
+
+  rector:
+    name: Code Quality (Rector)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, intl
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Run Rector (dry-run)
+        run: vendor/bin/rector process src/ --dry-run --no-progress-bar
+
+  deptrac:
+    name: Architecture (Deptrac)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, intl
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Run Deptrac
+        run: vendor/bin/deptrac analyse --no-progress
+
+  security:
+    name: Security (Composer Audit)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, intl
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Run Composer Audit
+        run: composer audit
