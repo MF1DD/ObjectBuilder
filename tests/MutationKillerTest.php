@@ -379,7 +379,7 @@ class MutationKillerTest extends TestCase
     public function testE2EReadonlyPersonAllPropsSet(): void
     {
         $p = ObjectBuilder::init(ReadonlyPerson::class, [
-            'name' => 'Foo', 'age' => 99
+            'name' => 'Foo', 'age' => 99, 'address' => null,
         ])->build();
         $this->assertSame('Foo', $p->name);
         $this->assertSame(99, $p->age);

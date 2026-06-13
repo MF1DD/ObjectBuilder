@@ -6,17 +6,14 @@
         ],
         "excludes": [
             "Dto",
-            "Exceptions"
+            "Exceptions",
+            "ClassBuilder/ClassBuilder.php",
+            "ClassBuilder/Interface/FileContentHandler.php"
         ]
     },
     "mutators": {
         "@default": true,
-        "@function_signature": false,
-        "PublicVisibility": {
-            "ignore": [
-                "MF1DD\\ObjectBuilder\\ClassBuilder\\Interface\\FileContentHandler::getReturnType"
-            ]
-        }
+        "@function_signature": false
     },
     "logs": {
         "text": "infection-report.txt",
