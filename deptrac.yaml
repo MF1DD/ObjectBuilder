@@ -3,34 +3,14 @@ deptrac:
     - src/
   exclude_files: []
   layers:
-    - name: ClassBuilder
+    - name: Src
       collectors:
         - type: directory
-          value: src/ClassBuilder/.*
-    - name: DataTypes
+          value: src/.*
+    - name: Vendor
       collectors:
         - type: directory
-          value: src/DataTypes/.*
-    - name: Services
-      collectors:
-        - type: directory
-          value: src/Services/.*
-    - name: Dto
-      collectors:
-        - type: directory
-          value: src/Dto/.*
-    - name: EntryPoint
-      collectors:
-        - type: directory
-          value: src/ObjectBuilder\.php
+          value: vendor/.*
   ruleset:
-    EntryPoint:
-      - ClassBuilder
-      - Services
-    ClassBuilder:
-      - DataTypes
-      - Services
-      - Dto
-    Services:
-      - DataTypes
-      - ClassBuilder
+    Src:
+      - Src

@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <psalm
-    errorLevel="4"
+    errorLevel="5"
     resolveFromConfigFile="true"
+    findUnusedBaselineEntry="false"
+    findUnusedCode="false"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
@@ -13,22 +15,6 @@
         </ignoreFiles>
     </projectFiles>
     <issueHandlers>
-        <UndefinedMagicMethod>
-            <errorLevel type="suppress">
-                <referencedMethod name="ReflectionEnumUnitCase::cases"/>
-            </errorLevel>
-        </UndefinedMagicMethod>
-        <MissingOverrideAttribute>
-            <errorLevel type="suppress"/>
-        </MissingOverrideAttribute>
-        <UnusedClass>
-            <errorLevel type="suppress"/>
-        </UnusedClass>
-        <PossiblyUnusedMethod>
-            <errorLevel type="suppress"/>
-        </PossiblyUnusedMethod>
-        <UnusedVariable>
-            <errorLevel type="suppress"/>
-        </UnusedVariable>
+        <MissingOverrideAttribute errorLevel="suppress"/>
     </issueHandlers>
 </psalm>
