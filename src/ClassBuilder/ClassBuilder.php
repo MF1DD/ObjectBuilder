@@ -116,6 +116,27 @@ class ClassBuilder implements ClassBuilderInterface
                     : $propertyType,
                 default => $propertyType
             };
+
+            $hasUserValue = array_key_exists($parameter->getName(), $this->parameters)
+                && !($this->parameters[$parameter->getName()] instanceof NoValueSet);
+
+            if ($hasUserValue) {
+                $userValue = $this->parameters[$parameter->getName()];
+                $userType = match (true) {
+                    is_object($userValue) => get_class($userValue),
+                    is_int($userValue) => 'int',
+                    is_float($userValue) => 'float',
+                    is_bool($userValue) => 'bool',
+                    is_string($userValue) => 'string',
+                    is_array($userValue) => 'array',
+                    default => gettype($userValue),
+                };
+                $allTypes = DataTypeService::getDataTypeFromString((string)$parameter->getType());
+
+                if ($allTypes !== null && count($allTypes) > 1 && in_array($userType, $allTypes, true)) {
+                    $propertyType = $userType;
+                }
+            }
         }
 
         if (

@@ -95,7 +95,8 @@ class FullCoverageTest extends TestCase
         $builder = new BooleanBuilder();
         $result = $builder->build();
         $this->assertIsBool($result);
-        $this->assertTrue($builder->buildAsString() === 'true' || $builder->buildAsString() === 'false');
+        $str = $builder->buildAsString();
+        $this->assertContains($str, ['true', 'false']);
     }
 
     public function testBooleanBuilderSetPropertyWithValue(): void
