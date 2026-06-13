@@ -15,7 +15,7 @@ final class ObjectBuilder
     /**
      * @var ReflectionClass<object>
      */
-    private ReflectionClass $reflection;
+    private readonly ReflectionClass $reflection;
 
     private ?ClassBuilderInterface $forcedBuilder = null;
 

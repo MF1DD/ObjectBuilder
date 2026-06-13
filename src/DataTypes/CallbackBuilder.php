@@ -10,9 +10,7 @@ class CallbackBuilder implements DataTypeInterface
 {
     public function build(): mixed
     {
-        return function ($param1, $param2) {
-            return $param1 + $param2;
-        };
+        return fn($param1, $param2) => $param1 + $param2;
     }
 
     public function setProperty(Property $property): self

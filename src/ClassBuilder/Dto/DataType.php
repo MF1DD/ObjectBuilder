@@ -18,7 +18,7 @@ class DataType
     ) {
         $this->isObject = is_object($value);
 
-        if ($this->isObject && !str_ends_with($value::class, $type)) {
+        if ($this->isObject && !str_ends_with($value::class, (string) $type)) {
             throw new ObjectBuilderWrongClassesGivenException(
                 sprintf('Given wrong class for return type. Given: %s. Expected: %s', $value::class, $type),
             );

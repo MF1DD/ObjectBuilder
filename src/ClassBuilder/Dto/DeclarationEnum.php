@@ -15,9 +15,9 @@ enum DeclarationEnum: string
     public static function fromString(mixed $content): self
     {
         return match (true) {
-            str_contains($content, ' public ') => self::PUBLIC,
-            str_contains($content, ' protected ') => self::PROTECTED,
-            str_contains($content, ' private ') => self::PRIVATE,
+            str_contains((string) $content, ' public ') => self::PUBLIC,
+            str_contains((string) $content, ' protected ') => self::PROTECTED,
+            str_contains((string) $content, ' private ') => self::PRIVATE,
 
             default => throw new InvalidArgumentException(sprintf('Invalid declaration provided: %s', $content)),
         };

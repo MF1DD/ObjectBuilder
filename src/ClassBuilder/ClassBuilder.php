@@ -123,7 +123,7 @@ class ClassBuilder implements ClassBuilderInterface
             if ($hasUserValue) {
                 $userValue = $this->parameters[$parameter->getName()];
                 $userType = match (true) {
-                    is_object($userValue) => get_class($userValue),
+                    is_object($userValue) => $userValue::class,
                     is_int($userValue) => 'int',
                     is_float($userValue) => 'float',
                     is_bool($userValue) => 'bool',
@@ -267,7 +267,7 @@ class ClassBuilder implements ClassBuilderInterface
         try {
             $name = $randomStaticMethode->getName();
             return $reflectionClass->getName()::$name(...$parameters);
-        } catch (Throwable $throwable) {
+        } catch (Throwable) {
             // Static method invocation failed, fall through to tryExceptionSolver
         }
 

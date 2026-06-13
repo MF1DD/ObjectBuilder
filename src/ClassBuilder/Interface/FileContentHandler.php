@@ -132,7 +132,8 @@ final class FileContentHandler implements HandlerInterface
                 return null;
             }
 
-            public function leaveNode(Node $node): null|array|Node
+            #[\Override]
+            public function leaveNode(Node $node): null|Node
             {
                 if ($node instanceof Stmt\Namespace_) {
                     $this->namespaceRef->value = $node->name ? $node->name->toString() : '';
@@ -311,7 +312,7 @@ final class FileContentHandler implements HandlerInterface
                 if (str_contains($this->className, $type . 'Class')) {
                     $returnTypeWithNamespace = sprintf(
                         '%s\\%s',
-                        trim($namespace),
+                        trim((string) $namespace),
                         $type
                     );
 
@@ -350,7 +351,7 @@ final class FileContentHandler implements HandlerInterface
                 }
 
                 $first = $stmts[0];
-                if ($first instanceof Stmt\Expression && $first->expr instanceof Expr) {
+                if ($first instanceof Stmt\Expression) {
                     return $first->expr;
                 }
 
