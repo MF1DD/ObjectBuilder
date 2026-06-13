@@ -14,63 +14,31 @@ parameters:
     - name: Domain
       collectors:
         - type: classLike
-          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\Interface\\StockClassHandlerInterface$
-        - type: classLike
-          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\Interface\\HandlerInterface$
-        - type: classLike
-          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\ClassBuilderInterface$
-        - type: classLike
-          value: ^MF1DD\\ObjectBuilder\\DataTypes\\DataTypeInterface$
-        - type: classLike
-          value: ^MF1DD\\ObjectBuilder\\Dto\\.*
-        - type: classLike
-          value: ^MF1DD\\ObjectBuilder\\Exceptions\\.*
+          value: ^MF1DD\\Domain\\
 
     - name: Application
       collectors:
         - type: classLike
-          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\ClassBuilder$
-        - type: classLike
-          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\EnumBuilder$
-        - type: classLike
-          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\InterfaceBuilder$
-        - type: classLike
-          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\TraitBuilder$
-        - type: classLike
-          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\AbstractClassBuilder$
-        - type: classLike
-          value: ^MF1DD\\ObjectBuilder\\Services\\ClassBuilderService$
-        - type: classLike
-          value: ^MF1DD\\ObjectBuilder\\Services\\DataTypeService$
-        - type: classLike
-          value: ^MF1DD\\ObjectBuilder\\Services\\StockClassHandlerService$
-        - type: classLike
-          value: ^MF1DD\\ObjectBuilder\\Services\\HandlerService$
-        - type: classLike
-          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\Interface\\FileContentHandler$
-        - type: classLike
-          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\Interface\\ImplementedClassHandler$
-        - type: classLike
-          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\Interface\\ThrowableHandler$
+          value: ^MF1DD\\Application\\
 
     - name: Infrastructure
       collectors:
         - type: classLike
-          value: ^MF1DD\\ObjectBuilder\\DataTypes\\(?!DataTypeInterface).*
-        - type: classLike
-          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\Interface\\StockClass\\.*
+          value: ^MF1DD\\Infrastructure\\
 
     - name: UserInterface
       collectors:
         - type: classLike
-          value: ^MF1DD\\ObjectBuilder\\ObjectBuilder$
+          value: ^MF1DD\\UserInterface\\
 
   ruleset:
     Domain: []
     Application:
       - Domain
+      - Infrastructure
     UserInterface:
       - Application
+      - Domain
     Infrastructure:
       - Application
       - Domain

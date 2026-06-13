@@ -8,28 +8,28 @@ use DateInterval;
 use DatePeriod;
 use DateTime;
 use DateTimeImmutable;
-use MF1DD\ObjectBuilder\ClassBuilder\AbstractClassBuilder;
-use MF1DD\ObjectBuilder\ClassBuilder\EnumBuilder;
-use MF1DD\ObjectBuilder\ClassBuilder\Interface\FileContentHandler;
-use MF1DD\ObjectBuilder\ClassBuilder\Interface\HandlerInterface;
-use MF1DD\ObjectBuilder\ClassBuilder\Interface\ImplementedClassHandler;
-use MF1DD\ObjectBuilder\ClassBuilder\Interface\ThrowableHandler;
-use MF1DD\ObjectBuilder\ClassBuilder\InterfaceBuilder;
-use MF1DD\ObjectBuilder\ClassBuilder\Services\HandlerService;
-use MF1DD\ObjectBuilder\ClassBuilder\TraitBuilder;
-use MF1DD\ObjectBuilder\DataTypes\ArrayBuilder;
-use MF1DD\ObjectBuilder\DataTypes\BooleanBuilder;
-use MF1DD\ObjectBuilder\DataTypes\CallbackBuilder;
-use MF1DD\ObjectBuilder\DataTypes\DataTypeInterface;
-use MF1DD\ObjectBuilder\DataTypes\FloatBuilder;
-use MF1DD\ObjectBuilder\DataTypes\IntegerBuilder;
-use MF1DD\ObjectBuilder\DataTypes\NullBuilder;
-use MF1DD\ObjectBuilder\DataTypes\SimpleObjectBuilder;
-use MF1DD\ObjectBuilder\DataTypes\StringBuilder;
-use MF1DD\ObjectBuilder\Dto\Constraints;
-use MF1DD\ObjectBuilder\Dto\Property;
-use MF1DD\ObjectBuilder\ObjectBuilder;
-use MF1DD\ObjectBuilder\Services\DataTypeService;
+use MF1DD\Application\AbstractClassBuilder;
+use MF1DD\Application\EnumBuilder;
+use MF1DD\Application\Interface\FileContentHandler;
+use MF1DD\Domain\HandlerInterface;
+use MF1DD\Application\Interface\ImplementedClassHandler;
+use MF1DD\Application\Interface\ThrowableHandler;
+use MF1DD\Application\InterfaceBuilder;
+use MF1DD\Application\Services\HandlerService;
+use MF1DD\Application\TraitBuilder;
+use MF1DD\Infrastructure\ArrayBuilder;
+use MF1DD\Infrastructure\BooleanBuilder;
+use MF1DD\Infrastructure\CallbackBuilder;
+use MF1DD\Domain\DataTypeInterface;
+use MF1DD\Infrastructure\FloatBuilder;
+use MF1DD\Infrastructure\IntegerBuilder;
+use MF1DD\Infrastructure\NullBuilder;
+use MF1DD\Infrastructure\SimpleObjectBuilder;
+use MF1DD\Infrastructure\StringBuilder;
+use MF1DD\Domain\Dto\Constraints;
+use MF1DD\Domain\Dto\Property;
+use MF1DD\UserInterface\ObjectBuilder;
+use MF1DD\Application\Services\DataTypeService;
 use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\AbstractVehicle;
 use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\Address;
 use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\Car;
@@ -44,8 +44,8 @@ use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\StockClass;
 use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Trait\MyTrait;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use MF1DD\ObjectBuilder\ClassBuilder\Dto\NoValueSet;
-use MF1DD\ObjectBuilder\Exceptions\ObjectBuilderWrongClassesGivenException;
+use MF1DD\Domain\Dto\NoValueSet;
+use MF1DD\Domain\Exceptions\ObjectBuilderWrongClassesGivenException;
 
 class FullCoverageTest extends TestCase
 {
@@ -280,14 +280,14 @@ class FullCoverageTest extends TestCase
 
     public function testArrayObjectHandlerSupport(): void
     {
-        $handler = new \MF1DD\ObjectBuilder\ClassBuilder\Interface\StockClass\ArrayObjectHandler();
+        $handler = new \MF1DD\Infrastructure\StockClass\ArrayObjectHandler();
         $this->assertTrue($handler::supports(new ReflectionClass(\ArrayObject::class)));
         $this->assertFalse($handler::supports(new ReflectionClass(\stdClass::class)));
     }
 
     public function testDateTimeImmutableHandlerSupport(): void
     {
-        $handler = new \MF1DD\ObjectBuilder\ClassBuilder\Interface\StockClass\DateTimeImmutableHandler();
+        $handler = new \MF1DD\Infrastructure\StockClass\DateTimeImmutableHandler();
         $this->assertTrue($handler::supports(new ReflectionClass(DateTimeImmutable::class)));
         $this->assertTrue($handler::supports(new ReflectionClass(DateTime::class)));
         $this->assertFalse($handler::supports(new ReflectionClass(\stdClass::class)));
@@ -295,13 +295,13 @@ class FullCoverageTest extends TestCase
 
     public function testReflectionFunctionHandlerSupport(): void
     {
-        $handler = new \MF1DD\ObjectBuilder\ClassBuilder\Interface\StockClass\ReflectionFunctionHandler();
+        $handler = new \MF1DD\Infrastructure\StockClass\ReflectionFunctionHandler();
         $this->assertTrue($handler::supports(new ReflectionClass(\ReflectionFunction::class)));
     }
 
     public function testSplFileInfoHandlerSupport(): void
     {
-        $handler = new \MF1DD\ObjectBuilder\ClassBuilder\Interface\StockClass\SplFileInfoHandler();
+        $handler = new \MF1DD\Infrastructure\StockClass\SplFileInfoHandler();
         $this->assertTrue($handler::supports(new ReflectionClass(\SplFileInfo::class)));
     }
 

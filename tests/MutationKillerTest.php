@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace MF1DD\ObjectBuilder\Tests;
 
-use MF1DD\ObjectBuilder\ClassBuilder\Dto\NoValueSet;
-use MF1DD\ObjectBuilder\DataTypes\ArrayBuilder;
-use MF1DD\ObjectBuilder\DataTypes\BooleanBuilder;
-use MF1DD\ObjectBuilder\DataTypes\CallbackBuilder;
-use MF1DD\ObjectBuilder\DataTypes\FloatBuilder;
-use MF1DD\ObjectBuilder\DataTypes\IntegerBuilder;
-use MF1DD\ObjectBuilder\DataTypes\NullBuilder;
-use MF1DD\ObjectBuilder\DataTypes\SimpleObjectBuilder;
-use MF1DD\ObjectBuilder\DataTypes\StringBuilder;
-use MF1DD\ObjectBuilder\Dto\Constraints;
-use MF1DD\ObjectBuilder\Dto\Property;
-use MF1DD\ObjectBuilder\ObjectBuilder;
-use MF1DD\ObjectBuilder\Services\DataTypeService;
+use MF1DD\Domain\Dto\NoValueSet;
+use MF1DD\Infrastructure\ArrayBuilder;
+use MF1DD\Infrastructure\BooleanBuilder;
+use MF1DD\Infrastructure\CallbackBuilder;
+use MF1DD\Infrastructure\FloatBuilder;
+use MF1DD\Infrastructure\IntegerBuilder;
+use MF1DD\Infrastructure\NullBuilder;
+use MF1DD\Infrastructure\SimpleObjectBuilder;
+use MF1DD\Infrastructure\StringBuilder;
+use MF1DD\Domain\Dto\Constraints;
+use MF1DD\Domain\Dto\Property;
+use MF1DD\UserInterface\ObjectBuilder;
+use MF1DD\Application\Services\DataTypeService;
 use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\Address;
 use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\ReadonlyPerson;
 use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\MyTestEnumeration;
@@ -404,7 +404,7 @@ class MutationKillerTest extends TestCase
 
     public function testFileContentHandlerGetReturnType(): void
     {
-        $handler = new \MF1DD\ObjectBuilder\ClassBuilder\Interface\FileContentHandler();
+        $handler = new \MF1DD\Application\Interface\FileContentHandler();
         $type = $handler->getReturnType('int|string');
         $this->assertContains($type, ['int', 'string']);
     }

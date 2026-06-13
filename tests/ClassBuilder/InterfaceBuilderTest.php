@@ -7,9 +7,9 @@ namespace MF1DD\ObjectBuilder\Tests\ClassBuilder;
 
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use MF1DD\ObjectBuilder\ClassBuilder\InterfaceBuilder;
-use MF1DD\ObjectBuilder\Exceptions\InfinityInterfaceException;
-use MF1DD\ObjectBuilder\ObjectBuilder;
+use MF1DD\Application\InterfaceBuilder;
+use MF1DD\Domain\Exceptions\InfinityInterfaceException;
+use MF1DD\UserInterface\ObjectBuilder;
 use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\Address;
 use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Interface\EmptyTestInterface;
 use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Interface\InfinityInterface;

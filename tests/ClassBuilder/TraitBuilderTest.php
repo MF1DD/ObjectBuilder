@@ -5,7 +5,7 @@ namespace MF1DD\ObjectBuilder\Tests\ClassBuilder;
 
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use MF1DD\ObjectBuilder\ClassBuilder\TraitBuilder;
+use MF1DD\Application\TraitBuilder;
 use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\MyTestTrait;
 
 class TraitBuilderTest extends TestCase

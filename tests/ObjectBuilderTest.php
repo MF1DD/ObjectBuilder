@@ -7,7 +7,7 @@ use DateInterval;
 use DatePeriod;
 use ReflectionClass;
 use ReflectionException;
-use MF1DD\ObjectBuilder\ObjectBuilder;
+use MF1DD\UserInterface\ObjectBuilder;
 use PHPUnit\Framework\TestCase;
 use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\Address;
 use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\Name;

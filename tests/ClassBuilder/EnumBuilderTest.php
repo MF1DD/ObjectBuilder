@@ -6,8 +6,8 @@ namespace MF1DD\ObjectBuilder\Tests\ClassBuilder;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use MF1DD\ObjectBuilder\ClassBuilder\EnumBuilder;
-use MF1DD\ObjectBuilder\ObjectBuilder;
+use MF1DD\Application\EnumBuilder;
+use MF1DD\UserInterface\ObjectBuilder;
 use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\MyTestEnumeration;
 
 class EnumBuilderTest extends TestCase

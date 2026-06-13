@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace MF1DD\ObjectBuilder\Tests\ClassBuilder;
 
 use PHPUnit\Framework\TestCase;
-use MF1DD\ObjectBuilder\ClassBuilder\ClassBuilder;
-use MF1DD\ObjectBuilder\Exceptions\ObjectBuilderWrongClassesGivenException;
-use MF1DD\ObjectBuilder\ObjectBuilder;
+use MF1DD\Application\ClassBuilder;
+use MF1DD\Domain\Exceptions\ObjectBuilderWrongClassesGivenException;
+use MF1DD\UserInterface\ObjectBuilder;
 use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\Address;
 use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\Entity\PrivateConstruct;
 use MF1DD\ObjectBuilder\Tests\ClassBuilder\Helper\PrivateConstructorClass;

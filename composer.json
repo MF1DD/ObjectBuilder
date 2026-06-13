@@ -9,7 +9,10 @@
     },
     "autoload": {
         "psr-4": {
-            "MF1DD\\ObjectBuilder\\": "src/"
+            "MF1DD\\Domain\\": "src/Domain/",
+            "MF1DD\\Application\\": "src/Application/",
+            "MF1DD\\Infrastructure\\": "src/Infrastructure/",
+            "MF1DD\\UserInterface\\": "src/UserInterface/"
         }
     },
     "autoload-dev": {

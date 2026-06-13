@@ -8,9 +8,9 @@ use DateInterval;
 use DatePeriod;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use MF1DD\ObjectBuilder\ClassBuilder\Interface\StockClassHandlerInterface;
-use MF1DD\ObjectBuilder\ObjectBuilder;
-use MF1DD\ObjectBuilder\Services\StockClassHandlerService;
+use MF1DD\Domain\StockClassHandlerInterface;
+use MF1DD\UserInterface\ObjectBuilder;
+use MF1DD\Application\Services\StockClassHandlerService;
 use Throwable;
 
 class StockClassHandlerTest extends TestCase
