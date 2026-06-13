@@ -16,6 +16,7 @@
 /.qa/psalm/psalm.xml    export-ignore
 /.qa/rector/rector.php  export-ignore
 /.qa/deptrac/deptrac.yaml export-ignore
+/.qa/deptrac/deptrac.baseline.yaml export-ignore
 /Report.md             export-ignore
 /ToDo.md               export-ignore
 /.phpunit.result.cache export-ignore

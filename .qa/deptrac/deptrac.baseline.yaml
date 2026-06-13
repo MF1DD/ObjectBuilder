@@ -1,0 +1,30 @@
+deptrac:
+  skip_violations:
+    MF1DD\ObjectBuilder\ClassBuilder\AbstractClassBuilder:
+      - MF1DD\ObjectBuilder\ObjectBuilder
+    MF1DD\ObjectBuilder\ClassBuilder\ClassBuilder:
+      - MF1DD\ObjectBuilder\ObjectBuilder
+    MF1DD\ObjectBuilder\ClassBuilder\Interface\FileContentHandler:
+      - MF1DD\ObjectBuilder\ObjectBuilder
+    MF1DD\ObjectBuilder\ClassBuilder\Interface\ThrowableHandler:
+      - MF1DD\ObjectBuilder\ObjectBuilder
+    MF1DD\ObjectBuilder\ObjectBuilder:
+      - MF1DD\ObjectBuilder\ClassBuilder\ClassBuilderInterface
+      - MF1DD\ObjectBuilder\Exceptions\ObjectBuilderReflectionException
+    MF1DD\ObjectBuilder\Services\DataTypeService:
+      - MF1DD\ObjectBuilder\DataTypes\ArrayBuilder
+      - MF1DD\ObjectBuilder\DataTypes\BooleanBuilder
+      - MF1DD\ObjectBuilder\DataTypes\CallbackBuilder
+      - MF1DD\ObjectBuilder\DataTypes\FloatBuilder
+      - MF1DD\ObjectBuilder\DataTypes\IntegerBuilder
+      - MF1DD\ObjectBuilder\DataTypes\MixedBuilder
+      - MF1DD\ObjectBuilder\DataTypes\NullBuilder
+      - MF1DD\ObjectBuilder\DataTypes\SimpleObjectBuilder
+      - MF1DD\ObjectBuilder\DataTypes\StringBuilder
+    MF1DD\ObjectBuilder\Services\StockClassHandlerService:
+      - MF1DD\ObjectBuilder\ClassBuilder\Interface\StockClass\ArrayObjectHandler
+      - MF1DD\ObjectBuilder\ClassBuilder\Interface\StockClass\DateIntervalHandler
+      - MF1DD\ObjectBuilder\ClassBuilder\Interface\StockClass\DatePeriodHandler
+      - MF1DD\ObjectBuilder\ClassBuilder\Interface\StockClass\DateTimeImmutableHandler
+      - MF1DD\ObjectBuilder\ClassBuilder\Interface\StockClass\ReflectionFunctionHandler
+      - MF1DD\ObjectBuilder\ClassBuilder\Interface\StockClass\SplFileInfoHandler

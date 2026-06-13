@@ -1,16 +1,76 @@
-deptrac:
+
+imports:
+  - ./deptrac.baseline.yaml
+
+parameters:
+  strict: true
   paths:
-    - ../../src/
-  exclude_files: []
+    - ./../../src/
+
+  exclude_files:
+    - '#.*test.*#'
+
   layers:
-    - name: Src
+    - name: Domain
       collectors:
-        - type: directory
-          value: src/.*
-    - name: Vendor
+        - type: classLike
+          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\Interface\\StockClassHandlerInterface$
+        - type: classLike
+          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\Interface\\HandlerInterface$
+        - type: classLike
+          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\ClassBuilderInterface$
+        - type: classLike
+          value: ^MF1DD\\ObjectBuilder\\DataTypes\\DataTypeInterface$
+        - type: classLike
+          value: ^MF1DD\\ObjectBuilder\\Dto\\.*
+        - type: classLike
+          value: ^MF1DD\\ObjectBuilder\\Exceptions\\.*
+
+    - name: Application
       collectors:
-        - type: directory
-          value: vendor/.*
+        - type: classLike
+          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\ClassBuilder$
+        - type: classLike
+          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\EnumBuilder$
+        - type: classLike
+          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\InterfaceBuilder$
+        - type: classLike
+          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\TraitBuilder$
+        - type: classLike
+          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\AbstractClassBuilder$
+        - type: classLike
+          value: ^MF1DD\\ObjectBuilder\\Services\\ClassBuilderService$
+        - type: classLike
+          value: ^MF1DD\\ObjectBuilder\\Services\\DataTypeService$
+        - type: classLike
+          value: ^MF1DD\\ObjectBuilder\\Services\\StockClassHandlerService$
+        - type: classLike
+          value: ^MF1DD\\ObjectBuilder\\Services\\HandlerService$
+        - type: classLike
+          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\Interface\\FileContentHandler$
+        - type: classLike
+          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\Interface\\ImplementedClassHandler$
+        - type: classLike
+          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\Interface\\ThrowableHandler$
+
+    - name: Infrastructure
+      collectors:
+        - type: classLike
+          value: ^MF1DD\\ObjectBuilder\\DataTypes\\(?!DataTypeInterface).*
+        - type: classLike
+          value: ^MF1DD\\ObjectBuilder\\ClassBuilder\\Interface\\StockClass\\.*
+
+    - name: UserInterface
+      collectors:
+        - type: classLike
+          value: ^MF1DD\\ObjectBuilder\\ObjectBuilder$
+
   ruleset:
-    Src:
-      - Src
+    Domain: []
+    Application:
+      - Domain
+    UserInterface:
+      - Application
+    Infrastructure:
+      - Application
+      - Domain
