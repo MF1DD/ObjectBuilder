@@ -25,7 +25,7 @@ use MF1DD\Application\Services\DataTypeService;
 use MF1DD\Application\Services\StockClassHandlerService;
 use MF1DD\Application\Services\ObjectBuildService;
 
-class ClassBuilder implements ClassBuilderInterface
+final class ClassBuilder implements ClassBuilderInterface
 {
     /**
      * @var array<string, mixed>

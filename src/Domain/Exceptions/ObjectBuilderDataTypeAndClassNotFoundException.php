@@ -6,6 +6,6 @@ namespace MF1DD\Domain\Exceptions;
 
 use DomainException;
 
-class ObjectBuilderDataTypeAndClassNotFoundException extends DomainException
+final class ObjectBuilderDataTypeAndClassNotFoundException extends DomainException
 {
 }

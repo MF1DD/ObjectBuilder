@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MF1DD\Domain\Dto;
 
-class Property
+final class Property
 {
     /**
      * @param string|null $name

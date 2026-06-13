@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MF1DD\Domain\Dto;
 
-class Parameters
+final class Parameters
 {
     /**
      * @param array<string|int, mixed> $parameter

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MF1DD\Domain\Dto;
 
-class Methode
+final class Methode
 {
     public function __construct(
         public readonly string $content,

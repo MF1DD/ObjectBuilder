@@ -50,7 +50,7 @@ final class FileContentHandler implements HandlerInterface
         $this->parameters = $parameters;
         $this->className = $this->increaseClassNameIfNeeded();
 
-        $fileName = $reflectionClass->getFileName() ?: '';
+        $fileName = $reflectionClass->getFileName() !== false ? $reflectionClass->getFileName() : '';
         if (!$fileName || !file_exists($fileName)) {
             throw new ObjectBuilderUnknownClassTypeGivenException();
         }
@@ -85,7 +85,7 @@ final class FileContentHandler implements HandlerInterface
 
     public static function support(ReflectionClass $reflectionClass): bool
     {
-        if (!$reflectionClass->getFileName()) {
+        if ($reflectionClass->getFileName() === false) {
             return false;
         }
 

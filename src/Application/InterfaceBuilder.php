@@ -8,7 +8,7 @@ use ReflectionClass;
 use MF1DD\Domain\ClassBuilderInterface;
 use MF1DD\Application\Services\HandlerService;
 
-class InterfaceBuilder implements ClassBuilderInterface
+final class InterfaceBuilder implements ClassBuilderInterface
 {
     public const int MAX_ALLOWED_INFINITY_INTERFACE_LOADER = 5;
 

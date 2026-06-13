@@ -6,7 +6,7 @@ namespace MF1DD\Domain\Exceptions;
 
 use DomainException;
 
-class EnumBuilderException extends DomainException
+final class EnumBuilderException extends DomainException
 {
     /**
      * @param string $message

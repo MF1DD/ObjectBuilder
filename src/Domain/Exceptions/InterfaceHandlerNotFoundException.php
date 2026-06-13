@@ -6,6 +6,6 @@ namespace MF1DD\Domain\Exceptions;
 
 use DomainException;
 
-class InterfaceHandlerNotFoundException extends DomainException
+final class InterfaceHandlerNotFoundException extends DomainException
 {
 }

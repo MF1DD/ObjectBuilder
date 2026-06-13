@@ -12,7 +12,7 @@ use MF1DD\Application\EnumBuilder;
 use MF1DD\Application\InterfaceBuilder;
 use MF1DD\Application\TraitBuilder;
 
-class ClassBuilderService
+final class ClassBuilderService
 {
     /**
      * @param ReflectionClass<object> $reflection

@@ -9,7 +9,7 @@ use MF1DD\Domain\DataTypeInterface;
 use MF1DD\Domain\Dto\NoValueSet;
 use MF1DD\Domain\Dto\Property;
 
-class ArrayBuilder implements DataTypeInterface
+final class ArrayBuilder implements DataTypeInterface
 {
     private ?Property $property = null;
 

@@ -6,6 +6,6 @@ namespace MF1DD\Domain\Exceptions;
 
 use DomainException;
 
-class ObjectBuilderException extends DomainException
+final class ObjectBuilderException extends DomainException
 {
 }

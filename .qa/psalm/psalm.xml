@@ -21,7 +21,7 @@
                 <referencedMethod name="ReflectionType::isBuiltin"/>
             </errorLevel>
         </UndefinedMethod>
-        <!-- Level 1: systemic mixed-type from Property::$value (DTO design) -->
+        <!-- Systemic: Property::$value is mixed by DTO design -->
         <MixedAssignment errorLevel="suppress"/>
         <MixedArgument errorLevel="suppress"/>
         <MixedReturnStatement errorLevel="suppress"/>
@@ -29,28 +29,19 @@
         <MixedOperand errorLevel="suppress"/>
         <MixedMethodCall errorLevel="suppress"/>
         <MixedReturnTypeCoercion errorLevel="suppress"/>
-        <!-- Level 1: builder design uses build() as init, not constructor -->
+        <!-- Builder design: state set via build(), not constructor -->
         <MissingConstructor errorLevel="suppress"/>
-        <!-- Level 1: intentional dynamic class instantiation -->
+        <!-- Intentional: dynamic class instantiation for generated code -->
         <InvalidStringClass errorLevel="suppress"/>
-        <!-- Level 1: temp file include is explicitly dynamic -->
+        <!-- Intentional: temp file include for AST-generated code -->
         <UnresolvableInclude errorLevel="suppress"/>
-        <!-- Level 1: truthy checks are safe here -->
-        <RiskyTruthyFalsyComparison errorLevel="suppress"/>
-        <!-- Level 1: ::cases() and enum methods via reflection -->
-        <InvalidReturnStatement errorLevel="suppress"/>
-        <!-- Level 1: class-string comparison with string literal is safe -->
-        <TypeDoesNotContainType errorLevel="suppress"/>
-        <!-- Level 1: array shape mismatch from PhpParser version -->
+        <!-- PhpParser version mismatch: comments key in constructor -->
         <InvalidArgument errorLevel="suppress"/>
-        <!-- Level 1: closure without explicit types (callback builder) -->
-        <MissingClosureReturnType errorLevel="suppress"/>
-        <MissingClosureParamType errorLevel="suppress"/>
-        <!-- Level 1: getCode() returns int|string, parent expects int -->
-        <PossiblyInvalidArgument errorLevel="suppress"/>
-        <!-- Level 1: class_implements can return false -->
-        <PossiblyFalseArgument errorLevel="suppress"/>
-        <!-- Level 1: array type mismatch from TypeService -->
+        <!-- Enum reflection: ::cases() return type inference -->
+        <InvalidReturnStatement errorLevel="suppress"/>
+        <!-- Safe: string comparison with class-string -->
+        <TypeDoesNotContainType errorLevel="suppress"/>
+        <!-- Reflection: newInstanceArgs type mismatch from generateRandomValue -->
         <ArgumentTypeCoercion errorLevel="suppress"/>
     </issueHandlers>
 </psalm>

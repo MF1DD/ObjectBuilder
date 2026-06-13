@@ -7,13 +7,13 @@ namespace MF1DD\Domain\Exceptions;
 use DomainException;
 use Throwable;
 
-class ObjectBuilderReflectionException extends DomainException
+final class ObjectBuilderReflectionException extends DomainException
 {
     public function __construct(?Throwable $previous = null)
     {
         parent::__construct(
             $previous?->getMessage() ?? 'Reflection error',
-            $previous?->getCode() ?? 0,
+            (int) ($previous?->getCode() ?? 0),
             $previous
         );
     }

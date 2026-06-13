@@ -7,7 +7,7 @@ namespace MF1DD\Infrastructure;
 use MF1DD\Domain\DataTypeInterface;
 use MF1DD\Domain\Dto\Property;
 
-class NullBuilder implements DataTypeInterface
+final class NullBuilder implements DataTypeInterface
 {
     public function build(): mixed
     {

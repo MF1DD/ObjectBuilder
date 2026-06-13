@@ -7,7 +7,7 @@ namespace MF1DD\Application\Interface;
 use ReflectionClass;
 use MF1DD\Domain\HandlerInterface;
 
-class ImplementedClassHandler implements HandlerInterface
+final class ImplementedClassHandler implements HandlerInterface
 {
     /**
      * @param ReflectionClass<object> $reflectionClass
@@ -43,7 +43,8 @@ class ImplementedClassHandler implements HandlerInterface
     {
         $implementingClasses = [];
         foreach (get_declared_classes() as $className) {
-            if (in_array($reflectionClass->getName(), class_implements($className), true)) {
+            $interfaces = class_implements($className);
+            if ($interfaces !== false && in_array($reflectionClass->getName(), $interfaces, true)) {
                 $implementingClasses[] = $className;
             }
         }

@@ -8,7 +8,7 @@ use ReflectionClass;
 use RuntimeException;
 use MF1DD\Domain\ClassBuilderInterface;
 
-class TraitBuilder implements ClassBuilderInterface
+final class TraitBuilder implements ClassBuilderInterface
 {
     /**
      * @param ReflectionClass<object> $class

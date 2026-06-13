@@ -8,7 +8,7 @@ use InvalidArgumentException;
 use ReflectionClass;
 use MF1DD\Domain\ClassBuilderInterface;
 
-class EnumBuilder implements ClassBuilderInterface
+final class EnumBuilder implements ClassBuilderInterface
 {
     /**
      * @var array<string, mixed>

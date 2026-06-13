@@ -9,7 +9,7 @@ use MF1DD\Domain\ClassBuilderInterface;
 use MF1DD\Domain\Exceptions\ObjectBuilderWrongClassesGivenException;
 use MF1DD\Application\Services\ObjectBuildService;
 
-class AbstractClassBuilder implements ClassBuilderInterface
+final class AbstractClassBuilder implements ClassBuilderInterface
 {
     /**
      * @param ReflectionClass<object> $class

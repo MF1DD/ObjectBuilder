@@ -6,6 +6,6 @@ namespace MF1DD\Domain\Exceptions;
 
 use DomainException;
 
-class InfinityInterfaceException extends DomainException
+final class InfinityInterfaceException extends DomainException
 {
 }

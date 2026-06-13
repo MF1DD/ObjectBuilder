@@ -6,7 +6,7 @@ namespace MF1DD\Domain\Exceptions;
 
 use DomainException;
 
-class ObjectBuilderNoDependenciesFoundException extends DomainException
+final class ObjectBuilderNoDependenciesFoundException extends DomainException
 {
     public function __construct(string $message = '')
     {

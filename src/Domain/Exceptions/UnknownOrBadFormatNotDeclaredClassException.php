@@ -8,7 +8,7 @@ use DomainException;
 use ReflectionClass;
 use Throwable;
 
-class UnknownOrBadFormatNotDeclaredClassException extends DomainException
+final class UnknownOrBadFormatNotDeclaredClassException extends DomainException
 {
     /**
      * @param ReflectionClass<object> $class

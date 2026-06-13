@@ -7,11 +7,11 @@ namespace MF1DD\Infrastructure;
 use MF1DD\Domain\DataTypeInterface;
 use MF1DD\Domain\Dto\Property;
 
-class CallbackBuilder implements DataTypeInterface
+final class CallbackBuilder implements DataTypeInterface
 {
     public function build(): mixed
     {
-        return fn($param1, $param2) => $param1 + $param2;
+        return fn(int $param1, int $param2): int => $param1 + $param2;
     }
 
     public function setProperty(Property $property): self

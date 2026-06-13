@@ -6,7 +6,7 @@ namespace MF1DD\Domain\Dto;
 
 use MF1DD\Domain\Exceptions\ObjectBuilderWrongClassesGivenException;
 
-class DataType
+final class DataType
 {
     public readonly bool $isObject;
 

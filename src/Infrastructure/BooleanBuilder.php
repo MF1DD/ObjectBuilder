@@ -9,7 +9,7 @@ use MF1DD\Domain\DataTypeInterface;
 use MF1DD\Domain\Dto\NoValueSet;
 use MF1DD\Domain\Dto\Property;
 
-class BooleanBuilder implements DataTypeInterface
+final class BooleanBuilder implements DataTypeInterface
 {
     private ?Property $property = null;
 

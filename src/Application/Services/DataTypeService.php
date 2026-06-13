@@ -15,7 +15,7 @@ use MF1DD\Infrastructure\NullBuilder;
 use MF1DD\Infrastructure\SimpleObjectBuilder;
 use MF1DD\Infrastructure\StringBuilder;
 
-class DataTypeService
+final class DataTypeService
 {
     /**
      * @var array<string, DataTypeInterface>

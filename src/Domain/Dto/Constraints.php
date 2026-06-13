@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MF1DD\Domain\Dto;
 
-class Constraints
+final class Constraints
 {
     /**
      * @param array<string, mixed> $options Raw constraint options from the user
