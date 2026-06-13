@@ -89,9 +89,9 @@ final class FileContentHandler implements HandlerInterface
             return false;
         }
 
-        return !empty(
-            file($reflectionClass->getFileName(), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES)
-        );
+        $fileContent = file($reflectionClass->getFileName(), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+        return $fileContent !== false && $fileContent !== [];
     }
 
     private function transformInterfaceToClass(string $sourceCode): string

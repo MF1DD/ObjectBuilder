@@ -26,7 +26,7 @@ final class FloatBuilder implements DataTypeInterface
         $minFloat = $min !== null ? (float)$min : 0.0;
         $maxFloat = $max !== null ? (float)$max : ($min !== null ? $minFloat + 1000.0 : 1.0);
 
-        return (float) $minFloat + (float) mt_rand() / (float) mt_getrandmax() * ((float) $maxFloat - (float) $minFloat);
+        return $minFloat + mt_rand() / mt_getrandmax() * ($maxFloat - $minFloat);
     }
 
     public function setProperty(Property $property): self
