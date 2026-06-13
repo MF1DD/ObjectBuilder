@@ -5,10 +5,10 @@
             "src"
         ],
         "excludes": [
-            "Dto",
-            "Exceptions",
-            "ClassBuilder/ClassBuilder.php",
-            "ClassBuilder/Interface/FileContentHandler.php"
+            "Domain/Dto",
+            "Domain/Exceptions",
+            "Application/ClassBuilder.php",
+            "Application/Interface/FileContentHandler.php"
         ]
     },
     "mutators": {
@@ -21,7 +21,7 @@
         "summary": "infection-summary.txt"
     },
     "phpUnit": {
-        "configDir": "."
+        "configDir": "../../"
     },
     "timeout": 30
 }

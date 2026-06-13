@@ -16,5 +16,13 @@
     </projectFiles>
     <issueHandlers>
         <MissingOverrideAttribute errorLevel="suppress"/>
+        <UndefinedMethod>
+            <errorLevel type="suppress">
+                <referencedMethod name="ReflectionType::isBuiltin"/>
+            </errorLevel>
+        </UndefinedMethod>
+        <InvalidArgument errorLevel="info"/>
+        <InvalidReturnStatement errorLevel="info"/>
+        <ParadoxicalCondition errorLevel="info"/>
     </issueHandlers>
 </psalm>

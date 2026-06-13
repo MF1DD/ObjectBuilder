@@ -60,7 +60,7 @@ deptrac-baseline: ## Regenerate Deptrac baseline
 ## —— Mutation Testing ————————————————————————————————
 .PHONY: infection
 infection: ## Run Infection mutation testing
-	$(DOCKER) vendor/bin/infection --configuration .qa/infection/infection.json5 --threads=4
+	$(DOCKER) vendor/bin/infection --configuration=.qa/infection/infection.json5 --threads=4
 
 ## —— Security ————————————————————————————————————————
 .PHONY: audit
