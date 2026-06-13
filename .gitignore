@@ -3,3 +3,4 @@
 /reports/.phpunit.result.cache
 infection-report.*
 .deptrac.cache
+.qa/infection/*.txt
