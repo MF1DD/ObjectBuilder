@@ -10,7 +10,7 @@ use MF1DD\Application\Services\HandlerService;
 
 final class InterfaceBuilder implements ClassBuilderInterface
 {
-    public const int MAX_ALLOWED_INFINITY_INTERFACE_LOADER = 5;
+    public const MAX_ALLOWED_INFINITY_INTERFACE_LOADER = 5;
 
     private static int $counter = 0;
 

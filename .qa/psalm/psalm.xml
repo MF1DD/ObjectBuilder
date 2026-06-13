@@ -37,6 +37,8 @@
         <UnresolvableInclude errorLevel="suppress"/>
         <!-- PhpParser version mismatch: comments key in constructor -->
         <InvalidArgument errorLevel="suppress"/>
+        <!-- PHP 8.2: typed class constants require PHP 8.3+ -->
+        <MissingClassConstType errorLevel="suppress"/>
         <!-- Enum reflection: ::cases() return type inference -->
         <InvalidReturnStatement errorLevel="suppress"/>
         <!-- Safe: string comparison with class-string -->
