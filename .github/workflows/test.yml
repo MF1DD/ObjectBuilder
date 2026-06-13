@@ -85,7 +85,7 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Run Infection
-        run: vendor/bin/infection --configuration=.qa/infection/infection.json5 --no-progress --min-msi=40 --min-covered-msi=45 --threads=4
+        run: vendor/bin/infection --configuration=.qa/infection/infection.json5 --no-progress --min-msi=45 --min-covered-msi=48 --threads=4
 
   psalm:
     name: Static Analysis (Psalm)

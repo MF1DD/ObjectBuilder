@@ -1,4 +1,33 @@
 {
+    // Infection mutation testing configuration for ObjectBuilder.
+    //
+    // ~190 escaped mutants are expected and harmless. They fall into
+    // categories that cannot be unit-tested in isolation:
+    //
+    // 1. MatchArmRemoval (DataTypeService, HandlerService):
+    //    Removing a match arm for a specific type string ('object',
+    //    'callback', '') is not detected because these arms are only
+    //    triggered via runtime Reflection in the full ObjectBuilder
+    //    flow, not by direct DataTypeService calls.
+    //
+    // 2. ArrayItemRemoval / SpreadRemoval (StockClassHandlerService,
+    //    ThrowableHandler): Handler registration order and spread
+    //    operator mutations produce equivalent runtime results because
+    //    the code operates on unordered maps.
+    //
+    // 3. LogicalAnd/LogicalOr (DataType builders):
+    //    Guard clauses like `$this->property instanceof X && !$value
+    //    instanceof NoValueSet` produce equivalent boolean
+    //    expressions when mutated.
+    //
+    // 4. UnwrapArrayValues (EnumBuilder): Removing array_values()
+    //    from ::cases() is harmless because ::cases() already returns
+    //    a numerically indexed list.
+    //
+    // 5. FunctionCallRemoval/UnwrapFinally (TraitBuilder): Mutating
+    //    the finally block or unlink() call is not functionally
+    //    testable — the temp file cleanup is a safety measure.
+
     "$schema": "vendor/infection/infection/resources/schema.json",
     "source": {
         "directories": [
