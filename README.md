@@ -1,5 +1,52 @@
 # ObjectBuilder
-For automatically creating objects. Objects are created with random values
+For automatically creating objects. Objects are created with random values.
+
+## Basic Usage
+Einfache Klassen werden automatisch mit zufälligen Werten befüllt.
+```php
+class Address
+{
+    public function __construct(
+        private readonly mixed $street,
+        private readonly string|int $zip,
+        private readonly string $city,
+        private readonly ?string $country,
+        private readonly bool $mainResidence,
+    ) {}
+}
+
+$result = ObjectBuilder::init(Address::class)->build();
+// returns instance of Address with random values
+```
+
+Du kannst bestimmte Werte überschreiben. Nicht gesetzte Werte werden zufällig generiert.
+Dabei werden auch verschachtelte Objekte automatisch aufgelöst.
+```php
+class Person
+{
+    public function __construct(
+        private readonly Name $name,
+        private readonly int $age,
+        private readonly Address $address,
+    ) {}
+}
+
+$result = ObjectBuilder::init(Person::class, [
+    'age' => 25,
+    'name' => [
+        'firstName' => 'Max',
+        'lastName' => 'Mustermann'
+    ],
+    'address' => [
+        'city' => 'Berlin',
+    ]
+])->build();
+// $result->getAge() === 25
+// $result->getName()->getFirstName() === 'Max'
+// $result->getAddress()->getCity() === 'Berlin'
+// $result->getAddress()->getZip() === random int|string
+```
+
 ## Enumeration
 ```php
 enum MyEnumeration: string
@@ -21,6 +68,7 @@ $result = ObjectBuilder::init(MyEnumeration::class, ['OK'])->build();
 $result = ObjectBuilder::init(MyEnumeration::class, ['WARNING', 'ERROR'])->build();
 // returns one of MyEnumeration::WARNING|MyEnumeration::ERROR
 ```
+
 ## Trait
 Für übergebene Traits wird eine anonyme Klasse erzeugt die den Trait verwendet.
 Übergebene Parameter werden vom TraitBuilder nicht berücksichtigt.
@@ -28,6 +76,7 @@ Für übergebene Traits wird eine anonyme Klasse erzeugt die den Trait verwendet
 $result = ObjectBuilder::init(MyTrait::class)->build();
 // returns {class@anonymous/...}
 ```
+
 ## Interface
 Das übergebene Interface wird geladen und daraus dynamisch eine Klasse erzeugt.
 Diese liefert das Interface mit den benötigten Methoden zurück und implementiert das Interface.
@@ -60,7 +109,7 @@ $options = [
 $result = ObjectBuilder::init(MyInterface::class, $options)->build();
 // returns Object of MyInterfaceClass
 $value = $result->getMyObject()
-/** 
+/**
  * returns class SomeObject {
  *      string $name => "Gustav",
  *      int $age => 27,
@@ -76,10 +125,151 @@ $options = [
 $result = ObjectBuilder::init(MyInterface::class, $options)->build();
 // returns Object of MyInterfaceClass
 $value = $result->getMyObject()
-/** 
+/**
  * returns class SomeObject {
  *      string $name => "Bernhard",
  *      int $age => 27356453,
  * }
  */
+```
+
+## Readonly Classes
+Readonly-Klassen (PHP 8.2+) werden unterstützt. Properties werden automatisch
+im Konstruktor befüllt — auch verschachtelt.
+```php
+readonly class ReadonlyPerson
+{
+    public function __construct(
+        public string $name,
+        public int $age,
+        public ?ReadonlyAddress $address = null,
+    ) {}
+}
+
+$result = ObjectBuilder::init(ReadonlyPerson::class, [
+    'name' => 'Alice',
+    'address' => ['street' => 'Main St', 'city' => 'Springfield'],
+])->build();
+// $result->name === 'Alice'
+// $result->address->street === 'Main St'
+```
+
+## Abstract Classes
+Abstrakte Klassen werden über existierende konkrete Subklassen aufgelöst.
+Der Builder sucht automatisch eine passende Implementierung.
+```php
+abstract class AbstractVehicle
+{
+    public function __construct(public readonly string $brand) {}
+    abstract public function getType(): string;
+}
+
+class Car extends AbstractVehicle
+{
+    public function getType(): string { return 'car'; }
+}
+
+$result = ObjectBuilder::init(AbstractVehicle::class)->build();
+// returns instance of Car (or another concrete subclass)
+```
+
+## Stock Classes (PHP Built-Ins)
+Built-in PHP-Klassen wie DateInterval, DatePeriod, DateTime, DateTimeImmutable,
+ReflectionFunction, ArrayObject und SplFileInfo werden automatisch unterstützt.
+```php
+$interval = ObjectBuilder::init(DateInterval::class)->build();
+// returns DateInterval('P7D')
+
+$date = ObjectBuilder::init(DateTimeImmutable::class)->build();
+// returns random DateTimeImmutable instance
+
+$ref = ObjectBuilder::init(ReflectionFunction::class)->build();
+// returns new ReflectionFunction('strlen')
+```
+
+Eigene Handler für weitere Stock-Klassen können registriert werden:
+```php
+use Timelesstron\ObjectBuilder\Services\StockClassHandlerService;
+
+StockClassHandlerService::register(new MyCustomHandler());
+```
+
+## Value Constraints (`with()`)
+Mit der `with()`-Methode können Constraints für Wertebereiche gesetzt werden.
+```php
+use Timelesstron\ObjectBuilder\ObjectBuilder;
+
+$result = ObjectBuilder::init(Person::class)
+    ->with('age', ['min' => 18, 'max' => 65])
+    ->with('email', ['format' => 'email'])
+    ->build();
+// $result->getAge() ist zwischen 18 und 65
+// $result->getEmail() ist eine zufällige E-Mail-Adresse
+```
+
+Verfügbare Constraints:
+- `min` / `max` — Wertebereich für int und float
+- `min_length` / `max_length` — String-Länge
+- `format` — Vordefinierte Formate: `email`, `url`, `uuid`
+
+## Semantic String Detection
+Der StringBuilder erkennt bestimmte Property-Namen und liefert passende Werte:
+```php
+class User
+{
+    public function __construct(
+        public readonly string $timezone,    // random IANA timezone
+        public readonly string $countrycode, // random ISO country code
+        public readonly string $email,       // random email address
+        public readonly string $firstname,   // random first name
+        public readonly string $lastname,    // random last name
+        public readonly string $city,        // random city name
+        public readonly string $street,      // random street name
+        public readonly string $zip,         // random postal code
+        public readonly string $phone,       // random phone number
+        public readonly string $uuid,        // random UUID v4
+        public readonly string $url,         // random URL
+    ) {}
+}
+
+$result = ObjectBuilder::init(User::class)->build();
+// All properties contain semantically meaningful random values
+```
+
+## Custom Type Builders
+Eigene Typ-Builder für spezielle Datentypen können registriert werden:
+```php
+use Timelesstron\ObjectBuilder\Services\DataTypeService;
+use Timelesstron\ObjectBuilder\DataTypes\DataTypeInterface;
+use Timelesstron\ObjectBuilder\Dto\Property;
+
+class CustomBuilder implements DataTypeInterface
+{
+    public function build(): mixed
+    {
+        return 'custom value';
+    }
+
+    public function setProperty(Property $property): self
+    {
+        return $this;
+    }
+
+    public function buildAsString(): string
+    {
+        return "'custom value'";
+    }
+}
+
+DataTypeService::register('custom_type', new CustomBuilder());
+```
+
+## Custom Builder Override
+Der automatisch gewählte Builder kann überschrieben werden:
+```php
+use Timelesstron\ObjectBuilder\ClassBuilder\ClassBuilderInterface;
+
+$result = ObjectBuilder::init(MyClass::class)
+    ->withBuilder($myCustomBuilder)
+    ->build();
 ```
