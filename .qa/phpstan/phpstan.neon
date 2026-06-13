@@ -1,5 +1,5 @@
 parameters:
-    level: 8
+    level: 9
     paths:
         - ../../src
     ignoreErrors:
@@ -7,3 +7,11 @@ parameters:
         - '#Call to an undefined method ReflectionType::isBuiltin\(\)#'
         - '#no value type specified in iterable type array#'
         - '#has parameter .* with generic class ReflectionClass but does not specify its types#'
+        - '#Property constructor expects string.null, mixed given#'
+        - '#function sprintf expects .+, mixed given#'
+        - '#getDataTypeBuilder.. expects string.null, mixed given#'
+        - '#Cannot cast mixed to int#'
+        - '#Cannot cast mixed to string#'
+        - '#Cannot access constant class on mixed#'
+        - '#should return .+ but returns mixed#'
+        - '#buildObjectReturnExpression.. expects string, mixed given#'

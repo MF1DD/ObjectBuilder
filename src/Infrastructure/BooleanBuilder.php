@@ -16,7 +16,9 @@ class BooleanBuilder implements DataTypeInterface
     public function build(): bool
     {
         if ($this->property instanceof Property && !$this->property->value instanceof NoValueSet) {
-            return $this->property->value;
+            /** @var bool $value */
+            $value = $this->property->value;
+            return $value;
         }
 
         return (bool)mt_rand(0, 1);

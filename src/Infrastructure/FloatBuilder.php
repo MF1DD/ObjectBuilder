@@ -16,7 +16,9 @@ class FloatBuilder implements DataTypeInterface
     public function build(): float
     {
         if ($this->property instanceof Property && !$this->property->value instanceof NoValueSet) {
-            return $this->property->value;
+            /** @var float $value */
+            $value = $this->property->value;
+            return $value;
         }
 
         $min = $this->property?->constraints?->min();

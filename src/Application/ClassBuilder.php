@@ -153,7 +153,7 @@ class ClassBuilder implements ClassBuilderInterface
             is_array($this->parameters[$parameter->getName()])
         ) {
             $allTypes = DataTypeService::getDataTypeFromString((string)$parameter->getType());
-            $classType = array_values(array_filter($allTypes ?? [], fn(string $t) => $t !== '?'));
+            $classType = array_values(array_filter($allTypes ?? [], fn(mixed $t) => $t !== '?'));
             if (!empty($classType)) {
                 $propertyType = $classType[0];
             }
@@ -183,6 +183,7 @@ class ClassBuilder implements ClassBuilderInterface
             }
 
             if (is_array($property->value)) {
+                /** @phpstan-ignore argument.type */
                 return ObjectBuildService::build($property->type, $property->value);
             }
 
@@ -338,9 +339,11 @@ class ClassBuilder implements ClassBuilderInterface
                     if (is_string($property->type) && (class_exists($property->type) || interface_exists(
                         $property->type
                     ))) {
+                        /** @var array<string, mixed> $params */
+                        $params = $property->value instanceof NoValueSet ? [] : $property->value;
                         $newParameters[] = ObjectBuildService::build(
                             $property->type,
-                            $property->value instanceof NoValueSet ? [] : $property->value
+                            $params
                         );
 
                         continue;

@@ -16,7 +16,9 @@ class MixedBuilder implements DataTypeInterface
     public function build(): mixed
     {
         if ($this->property instanceof Property && !$this->property->value instanceof NoValueSet) {
-            return $this->property->value;
+            /** @var mixed $value */
+            $value = $this->property->value;
+            return $value;
         }
 
         return $this->generateRandomValue();
