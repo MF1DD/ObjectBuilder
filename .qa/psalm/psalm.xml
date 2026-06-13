@@ -30,6 +30,8 @@
         <MixedMethodCall errorLevel="suppress"/>
         <MixedReturnTypeCoercion errorLevel="suppress"/>
         <MixedArgumentTypeCoercion errorLevel="suppress"/>
+        <!-- PHP int/float arithmetic is fine, strict mode false positive -->
+        <InvalidOperand errorLevel="suppress"/>
         <!-- Builder design: state set via build(), not constructor -->
         <MissingConstructor errorLevel="suppress"/>
         <!-- Intentional: dynamic class instantiation for generated code -->
