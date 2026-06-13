@@ -1,8 +1,13 @@
 {
     "name": "mf1dd/object-builder",
-    "description": "For automatically creating objects. Objects are created with random values",
+    "description": "Automatically creates fully populated PHP object instances with random, type-safe values. Designed for test fixtures and runtime object generation. Supports all PHP class types — regular classes, readonly classes, abstract classes, enums, traits, interfaces, and built-in stock classes like DateInterval or ArrayObject. Recursively resolves nested object graphs, detects property names for semantically meaningful values (timezone, email, firstname …), and offers constraint-based value ranges via a fluent API. No framework required; zero runtime dependencies beyond nikic/php-parser. PHP 8.2+.",
     "type": "library",
     "license": "MIT",
+    "keywords": ["object", "builder", "fixture", "test", "random", "data", "generator", "mock", "reflection", "factory"],
+    "support": {
+        "issues": "https://github.com/MF1DD/ObjectBuilder/issues",
+        "source": "https://github.com/MF1DD/ObjectBuilder"
+    },
     "require": {
         "php": "^8.2",
         "nikic/php-parser": "^5.0"
