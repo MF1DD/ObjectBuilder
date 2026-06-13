@@ -31,4 +31,46 @@ class IntegerBuilderTest extends TestCase
         $this->assertGreaterThanOrEqual(5, $result);
         $this->assertLessThanOrEqual(10, $result);
     }
+
+    public function testWithMinMaxConstraints(): void
+    {
+        $builder = new IntegerBuilder();
+        $builder->setProperty(new Property(
+            name: 'age', type: 'int', value: new NoValueSet(),
+            constraints: new Constraints(['min' => 18, 'max' => 65])
+        ));
+        $result = $builder->build();
+        $this->assertGreaterThanOrEqual(18, $result);
+        $this->assertLessThanOrEqual(65, $result);
+    }
+
+    public function testMinOnly(): void
+    {
+        $builder = new IntegerBuilder();
+        $builder->setProperty(new Property(
+            name: 'age', type: 'int', value: new NoValueSet(),
+            constraints: new Constraints(['min' => 100])
+        ));
+        $result = $builder->build();
+        $this->assertGreaterThanOrEqual(100, $result);
+    }
+
+    public function testMaxOnly(): void
+    {
+        $builder = new IntegerBuilder();
+        $builder->setProperty(new Property(
+            name: 'age', type: 'int', value: new NoValueSet(),
+            constraints: new Constraints(['max' => 50])
+        ));
+        $result = $builder->build();
+        $this->assertLessThanOrEqual(50, $result);
+    }
+
+    public function testWithoutConstraints(): void
+    {
+        $builder = new IntegerBuilder();
+        $builder->setProperty(new Property(name: 'age', type: 'int', value: new NoValueSet()));
+        $result = $builder->build();
+        $this->assertIsInt($result);
+    }
 }

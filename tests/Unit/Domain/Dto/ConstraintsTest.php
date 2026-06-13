@@ -19,4 +19,24 @@ class ConstraintsTest extends TestCase
         $this->assertNull($c->format());
         $this->assertNull($c->length());
     }
+
+    public function testAllGetters(): void
+    {
+        $c = new Constraints(['min' => 1, 'max' => 10, 'length' => 5, 'format' => 'email', 'min_length' => 3, 'max_length' => 20]);
+        $this->assertSame(1, $c->min());
+        $this->assertSame(10, $c->max());
+        $this->assertSame(5, $c->length());
+        $this->assertSame('email', $c->format());
+        $this->assertSame(3, $c->minLength());
+        $this->assertSame(20, $c->maxLength());
+    }
+
+    public function testEmptyReturnsNull(): void
+    {
+        $c = new Constraints([]);
+        $this->assertNull($c->min());
+        $this->assertNull($c->max());
+        $this->assertNull($c->length());
+        $this->assertNull($c->format());
+    }
 }

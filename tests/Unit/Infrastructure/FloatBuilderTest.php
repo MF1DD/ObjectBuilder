@@ -30,4 +30,46 @@ class FloatBuilderTest extends TestCase
         ));
         $this->assertSame(10.0, $b->build());
     }
+
+    public function testWithConstraints(): void
+    {
+        $builder = new FloatBuilder();
+        $builder->setProperty(new Property(
+            name: 'score', type: 'float', value: new NoValueSet(),
+            constraints: new Constraints(['min' => 1, 'max' => 10])
+        ));
+        $result = $builder->build();
+        $this->assertGreaterThanOrEqual(1.0, $result);
+        $this->assertLessThanOrEqual(10.0, $result);
+    }
+
+    public function testMinOnly(): void
+    {
+        $builder = new FloatBuilder();
+        $builder->setProperty(new Property(
+            name: 'score', type: 'float', value: new NoValueSet(),
+            constraints: new Constraints(['min' => 5])
+        ));
+        $result = $builder->build();
+        $this->assertGreaterThanOrEqual(5.0, $result);
+    }
+
+    public function testMaxOnly(): void
+    {
+        $builder = new FloatBuilder();
+        $builder->setProperty(new Property(
+            name: 'score', type: 'float', value: new NoValueSet(),
+            constraints: new Constraints(['max' => 5])
+        ));
+        $result = $builder->build();
+        $this->assertLessThanOrEqual(5.0, $result);
+    }
+
+    public function testWithoutConstraints(): void
+    {
+        $builder = new FloatBuilder();
+        $builder->setProperty(new Property(name: 'score', type: 'float', value: new NoValueSet()));
+        $result = $builder->build();
+        $this->assertIsFloat($result);
+    }
 }

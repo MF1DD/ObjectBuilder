@@ -20,6 +20,8 @@ use MF1DD\Tests\Helper\StockClass;
 use MF1DD\Tests\Helper\MyTrait;
 use MF1DD\Tests\Helper\MyTestEnumeration;
 use MF1DD\Tests\Helper\SimpleTestInterface;
+use MF1DD\Tests\Helper\SimpleReturnValueTestInterface;
+use MF1DD\Tests\Helper\SimpleReturnObjectTestInterface;
 
 class ObjectBuilderTest extends TestCase
 {
@@ -248,5 +250,61 @@ class ObjectBuilderTest extends TestCase
     {
         $result = ObjectBuilder::init(SimpleTestInterface::class)->build();
         $this->assertNull($result::post());
+    }
+
+    public function testInterfaceWithAllParamTypes(): void
+    {
+        $result = ObjectBuilder::init(SimpleReturnValueTestInterface::class, [
+            'getString' => 'test',
+            'getInt' => 42,
+            'getFloat' => 3.14,
+            'getBool' => true,
+        ])->build();
+
+        $this->assertSame('test', $result->getString());
+        $this->assertSame(42, $result->getInt());
+        $this->assertSame(3.14, $result->getFloat());
+        $this->assertTrue($result->getBool());
+    }
+
+    public function testInterfaceWithObjectReturn(): void
+    {
+        $result = ObjectBuilder::init(
+            SimpleReturnObjectTestInterface::class,
+            ['getAddress' => ['street' => 'Interface St', 'city' => 'Interface City']]
+        )->build();
+
+        $this->assertInstanceOf(Address::class, $result->getAddress());
+        $this->assertSame('Interface St', $result->getAddress()->getStreet());
+        $this->assertSame('Interface City', $result->getAddress()->getCity());
+    }
+
+    public function testValueConstraintStringFormatUuid(): void
+    {
+        $person = ObjectBuilder::init(ReadonlyPerson::class)
+            ->with('name', ['format' => 'uuid'])
+            ->build();
+        $this->assertMatchesRegularExpression(
+            '/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/',
+            $person->name
+        );
+    }
+
+    public function testNameClassWithoutConstructor(): void
+    {
+        $name = ObjectBuilder::init(Name::class)->build();
+        $this->assertInstanceOf(Name::class, $name);
+        $this->assertIsString($name->getFirstName());
+        $this->assertIsString($name->getLastName());
+    }
+
+    public function testAddressRandom(): void
+    {
+        $addr = ObjectBuilder::init(Address::class)->build();
+        $this->assertInstanceOf(Address::class, $addr);
+        $this->assertIsString($addr->getCity());
+        $result = $addr->getZip();
+        $this->assertTrue(is_int($result) || is_string($result));
+        $this->assertIsBool($addr->isMainResidence());
     }
 }
