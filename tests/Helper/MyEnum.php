@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace MF1DD\Tests\Fixture;
+namespace MF1DD\Tests\Helper;
 
-enum MyTestEnumeration: string
+enum MyEnum: string
 {
     case OK = 'OK';
     case WARNING = 'WARNING';

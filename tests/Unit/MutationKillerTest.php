@@ -17,10 +17,10 @@ use MF1DD\Domain\Dto\Constraints;
 use MF1DD\Domain\Dto\Property;
 use MF1DD\UserInterface\ObjectBuilder;
 use MF1DD\Application\Services\DataTypeService;
-use MF1DD\Tests\Fixture\Address;
-use MF1DD\Tests\Fixture\ReadonlyPerson;
-use MF1DD\Tests\Fixture\MyTestEnumeration;
-use MF1DD\Tests\Fixture\MyTrait;
+use MF1DD\Tests\Helper\Address;
+use MF1DD\Tests\Helper\ReadonlyPerson;
+use MF1DD\Tests\Helper\MyTestEnumeration;
+use MF1DD\Tests\Helper\MyTrait;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
@@ -398,7 +398,7 @@ class MutationKillerTest extends TestCase
 
     public function testInterfaceBuilderWithStaticMethod(): void
     {
-        $result = ObjectBuilder::init(\MF1DD\Tests\Fixture\SimpleTestInterface::class)->build();
+        $result = ObjectBuilder::init(\MF1DD\Tests\Helper\SimpleTestInterface::class)->build();
         $this->assertNull($result::post());
     }
 

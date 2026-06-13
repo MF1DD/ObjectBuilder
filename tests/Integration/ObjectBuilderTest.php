@@ -9,15 +9,15 @@ use ReflectionClass;
 use ReflectionException;
 use MF1DD\UserInterface\ObjectBuilder;
 use PHPUnit\Framework\TestCase;
-use MF1DD\Tests\Fixture\Address;
-use MF1DD\Tests\Fixture\Name;
-use MF1DD\Tests\Fixture\Person;
-use MF1DD\Tests\Fixture\ReadonlyPerson;
-use MF1DD\Tests\Fixture\ReadonlyAddress;
-use MF1DD\Tests\Fixture\AbstractVehicle;
-use MF1DD\Tests\Fixture\MyInterface;
-use MF1DD\Tests\Fixture\StockClass;
-use MF1DD\Tests\Fixture\MyTrait;
+use MF1DD\Tests\Helper\Address;
+use MF1DD\Tests\Helper\Name;
+use MF1DD\Tests\Helper\Person;
+use MF1DD\Tests\Helper\ReadonlyPerson;
+use MF1DD\Tests\Helper\ReadonlyAddress;
+use MF1DD\Tests\Helper\AbstractVehicle;
+use MF1DD\Tests\Helper\MyInterface;
+use MF1DD\Tests\Helper\StockClass;
+use MF1DD\Tests\Helper\MyTrait;
 
 class ObjectBuilderTest extends TestCase
 {
@@ -178,7 +178,7 @@ class ObjectBuilderTest extends TestCase
     public function testAbstractClass(): void
     {
         class_exists(AbstractVehicle::class);
-        class_exists(\MF1DD\Tests\Fixture\Car::class);
+        class_exists(\MF1DD\Tests\Helper\Car::class);
 
         $vehicle = ObjectBuilder::init(AbstractVehicle::class)->build();
         $this->assertInstanceOf(AbstractVehicle::class, $vehicle);

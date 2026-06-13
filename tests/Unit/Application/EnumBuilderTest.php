@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace MF1DD\Tests\Unit;
+namespace MF1DD\Tests\Application;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use MF1DD\Application\EnumBuilder;
 use MF1DD\UserInterface\ObjectBuilder;
-use MF1DD\Tests\Fixture\MyTestEnumeration;
+use MF1DD\Tests\Helper\MyTestEnumeration;
 
 class EnumBuilderTest extends TestCase
 {

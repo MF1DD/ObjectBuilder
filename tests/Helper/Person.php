@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace MF1DD\Tests\Fixture;
+namespace MF1DD\Tests\Helper;
 
 use DateTimeImmutable;
-use MF1DD\Tests\Fixture\MyEnum;
-use MF1DD\Tests\Fixture\MyInterface;
-use MF1DD\Tests\Fixture\MyTrait;
+use MF1DD\Tests\Helper\MyEnum;
+use MF1DD\Tests\Helper\MyInterface;
+use MF1DD\Tests\Helper\MyTrait;
 
 class Person
 {

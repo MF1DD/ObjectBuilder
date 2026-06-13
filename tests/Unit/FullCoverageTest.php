@@ -30,18 +30,18 @@ use MF1DD\Domain\Dto\Constraints;
 use MF1DD\Domain\Dto\Property;
 use MF1DD\UserInterface\ObjectBuilder;
 use MF1DD\Application\Services\DataTypeService;
-use MF1DD\Tests\Fixture\AbstractVehicle;
-use MF1DD\Tests\Fixture\Address;
-use MF1DD\Tests\Fixture\Car;
-use MF1DD\Tests\Fixture\Name;
-use MF1DD\Tests\Fixture\Person;
-use MF1DD\Tests\Fixture\PrivateConstruct;
-use MF1DD\Tests\Fixture\ReadonlyAddress;
-use MF1DD\Tests\Fixture\ReadonlyPerson;
-use MF1DD\Tests\Fixture\MyTestEnumeration;
-use MF1DD\Tests\Fixture\MyTestTrait;
-use MF1DD\Tests\Fixture\StockClass;
-use MF1DD\Tests\Fixture\MyTrait;
+use MF1DD\Tests\Helper\AbstractVehicle;
+use MF1DD\Tests\Helper\Address;
+use MF1DD\Tests\Helper\Car;
+use MF1DD\Tests\Helper\Name;
+use MF1DD\Tests\Helper\Person;
+use MF1DD\Tests\Helper\PrivateConstruct;
+use MF1DD\Tests\Helper\ReadonlyAddress;
+use MF1DD\Tests\Helper\ReadonlyPerson;
+use MF1DD\Tests\Helper\MyTestEnumeration;
+use MF1DD\Tests\Helper\MyTestTrait;
+use MF1DD\Tests\Helper\StockClass;
+use MF1DD\Tests\Helper\MyTrait;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use MF1DD\Domain\Dto\NoValueSet;
@@ -316,14 +316,14 @@ class FullCoverageTest extends TestCase
     public function testHandlerServiceImplementedClass(): void
     {
         class_exists(Person::class);
-        $ref = new ReflectionClass(\MF1DD\Tests\Fixture\SimpleTestInterface::class);
+        $ref = new ReflectionClass(\MF1DD\Tests\Helper\SimpleTestInterface::class);
         $handler = HandlerService::getHandler($ref);
         $this->assertInstanceOf(FileContentHandler::class, $handler);
     }
 
     public function testFileContentHandlerSupport(): void
     {
-        $ref = new ReflectionClass(\MF1DD\Tests\Fixture\EmptyTestInterface::class);
+        $ref = new ReflectionClass(\MF1DD\Tests\Helper\EmptyTestInterface::class);
         $this->assertTrue(FileContentHandler::support($ref));
     }
 
@@ -430,7 +430,7 @@ class FullCoverageTest extends TestCase
 
     public function testE2EInterfaceWithAllParamTypes(): void
     {
-        $result = ObjectBuilder::init(\MF1DD\Tests\Fixture\SimpleReturnValueTestInterface::class, [
+        $result = ObjectBuilder::init(\MF1DD\Tests\Helper\SimpleReturnValueTestInterface::class, [
             'getString' => 'test',
             'getInt' => 42,
             'getFloat' => 3.14,
@@ -446,7 +446,7 @@ class FullCoverageTest extends TestCase
     public function testE2EInterfaceWithObjectReturn(): void
     {
         $result = ObjectBuilder::init(
-            \MF1DD\Tests\Fixture\SimpleReturnObjectTestInterface::class,
+            \MF1DD\Tests\Helper\SimpleReturnObjectTestInterface::class,
             ['getAddress' => ['street' => 'Interface St', 'city' => 'Interface City']]
         )->build();
 

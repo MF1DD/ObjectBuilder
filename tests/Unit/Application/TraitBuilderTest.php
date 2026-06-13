@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace MF1DD\Tests\Unit;
+namespace MF1DD\Tests\Application;
 
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use MF1DD\Application\TraitBuilder;
-use MF1DD\Tests\Fixture\MyTestTrait;
+use MF1DD\Tests\Helper\MyTestTrait;
 
 class TraitBuilderTest extends TestCase
 {

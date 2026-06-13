@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MF1DD\Tests\Unit;
+namespace MF1DD\Tests\Application;
 
 
 use PHPUnit\Framework\TestCase;
@@ -10,14 +10,14 @@ use ReflectionClass;
 use MF1DD\Application\InterfaceBuilder;
 use MF1DD\Domain\Exceptions\InfinityInterfaceException;
 use MF1DD\UserInterface\ObjectBuilder;
-use MF1DD\Tests\Fixture\Address;
-use MF1DD\Tests\Fixture\EmptyTestInterface;
-use MF1DD\Tests\Fixture\InfinityInterface;
-use MF1DD\Tests\Fixture\MyInterface;
-use MF1DD\Tests\Fixture\Selectable;
-use MF1DD\Tests\Fixture\SimpleReturnObjectTestInterface;
-use MF1DD\Tests\Fixture\SimpleReturnValueTestInterface;
-use MF1DD\Tests\Fixture\SimpleTestInterface;
+use MF1DD\Tests\Helper\Address;
+use MF1DD\Tests\Helper\EmptyTestInterface;
+use MF1DD\Tests\Helper\InfinityInterface;
+use MF1DD\Tests\Helper\MyInterface;
+use MF1DD\Tests\Helper\Selectable;
+use MF1DD\Tests\Helper\SimpleReturnObjectTestInterface;
+use MF1DD\Tests\Helper\SimpleReturnValueTestInterface;
+use MF1DD\Tests\Helper\SimpleTestInterface;
 
 class InterfaceBuilderTest extends TestCase
 {

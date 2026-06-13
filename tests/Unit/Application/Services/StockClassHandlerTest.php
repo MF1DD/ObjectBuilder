@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MF1DD\Tests\Unit;
+namespace MF1DD\Tests\Application\Services;
 
 use DateInterval;
 use DatePeriod;

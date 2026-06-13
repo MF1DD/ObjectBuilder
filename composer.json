@@ -17,9 +17,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "MF1DD\\Tests\\Unit\\": "tests/Unit/",
-            "MF1DD\\Tests\\Integration\\": "tests/Integration/",
-            "MF1DD\\Tests\\Fixture\\": "tests/Fixture/"
+            "MF1DD\\Tests\\": "tests/"
         }
     },
     "require-dev": {

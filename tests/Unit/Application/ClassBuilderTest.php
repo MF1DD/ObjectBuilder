@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace MF1DD\Tests\Unit;
+namespace MF1DD\Tests\Application;
 
 use PHPUnit\Framework\TestCase;
 use MF1DD\Application\ClassBuilder;
 use MF1DD\Domain\Exceptions\ObjectBuilderWrongClassesGivenException;
 use MF1DD\UserInterface\ObjectBuilder;
-use MF1DD\Tests\Fixture\Address;
-use MF1DD\Tests\Fixture\PrivateConstruct;
-use MF1DD\Tests\Fixture\PrivateConstructorClass;
+use MF1DD\Tests\Helper\Address;
+use MF1DD\Tests\Helper\PrivateConstruct;
+use MF1DD\Tests\Helper\PrivateConstructorClass;
 
 class ClassBuilderTest extends TestCase
 {
