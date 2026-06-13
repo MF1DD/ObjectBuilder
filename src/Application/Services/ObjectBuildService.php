@@ -25,6 +25,7 @@ final class ObjectBuildService
     ): object {
         try {
             $reflection = new ReflectionClass($className);
+            /** @phpstan-ignore catch.neverThrown */
         } catch (Throwable $exception) {
             throw new ObjectBuilderReflectionException($exception);
         }

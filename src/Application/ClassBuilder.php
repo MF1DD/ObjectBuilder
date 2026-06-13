@@ -341,7 +341,7 @@ class ClassBuilder implements ClassBuilderInterface
                         $newParameters[] = ObjectBuildService::build(
                             $property->type,
                             $property->value instanceof NoValueSet ? [] : $property->value
-                        )->build();
+                        );
 
                         continue;
                     }
