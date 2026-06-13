@@ -111,7 +111,7 @@ class StringBuilder implements DataTypeInterface
 
     private function randomDateTime(): string
     {
-        return date('Y-m-d', mt_rand(strtotime('-1 year'), strtotime('now')));
+        return date('Y-m-d', mt_rand((int) strtotime('-1 year'), (int) strtotime('now')));
     }
 
     private function randomEmail(): string
