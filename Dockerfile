@@ -5,6 +5,8 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     unzip \
     git \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug \
     && docker-php-ext-install \
     intl \
     mbstring \

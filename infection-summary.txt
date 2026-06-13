@@ -1,0 +1,10 @@
+Total: 723
+
+Killed: 452
+Errored: 17
+Syntax Errors: 0
+Escaped: 171
+Timed Out: 0
+Skipped: 0
+Ignored: 0
+Not Covered: 83

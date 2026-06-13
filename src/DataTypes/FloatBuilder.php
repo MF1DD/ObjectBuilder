@@ -21,14 +21,14 @@ class FloatBuilder implements DataTypeInterface
         $min = $this->property?->constraints?->min();
         $max = $this->property?->constraints?->max();
         $minFloat = $min !== null ? (float)$min : 0.0;
-        $maxFloat = $max !== null ? (float)$max : 1.0;
+        $maxFloat = $max !== null ? (float)$max : ($min !== null ? $minFloat + 1000.0 : 1.0);
 
         return $minFloat + mt_rand() / mt_getrandmax() * ($maxFloat - $minFloat);
     }
 
     public function setProperty(Property $property): self
     {
-        if (!is_float($property->value) && $property->value !== null) {
+        if (!$property->value instanceof NoValueSet && !is_float($property->value) && $property->value !== null) {
             throw new InvalidArgumentException(
                 sprintf('Value "%s" must be an float. %s given', $property->value, gettype($property->value))
             );

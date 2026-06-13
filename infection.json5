@@ -1,0 +1,30 @@
+{
+    "$schema": "vendor/infection/infection/resources/schema.json",
+    "source": {
+        "directories": [
+            "src"
+        ],
+        "excludes": [
+            "Dto",
+            "Exceptions"
+        ]
+    },
+    "mutators": {
+        "@default": true,
+        "@function_signature": false,
+        "PublicVisibility": {
+            "ignore": [
+                "MF1DD\\ObjectBuilder\\ClassBuilder\\Interface\\FileContentHandler::getReturnType"
+            ]
+        }
+    },
+    "logs": {
+        "text": "infection-report.txt",
+        "html": "infection-report.html",
+        "summary": "infection-summary.txt"
+    },
+    "phpUnit": {
+        "configDir": "."
+    },
+    "timeout": 30
+}

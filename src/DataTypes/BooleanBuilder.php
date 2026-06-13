@@ -23,7 +23,7 @@ class BooleanBuilder implements DataTypeInterface
 
     public function setProperty(Property $property): self
     {
-        if (!is_bool($property->value) && $property->value !== null) {
+        if (!$property->value instanceof NoValueSet && !is_bool($property->value) && $property->value !== null) {
             throw new InvalidArgumentException(
                 sprintf('Value "%s" must be an boolean. %s given', $property->value, gettype($property->value))
             );

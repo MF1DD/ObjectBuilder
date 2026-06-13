@@ -150,9 +150,7 @@ class ClassBuilder implements ClassBuilderInterface
         $dataTypeHandler = DataTypeService::getDataTypeBuilder($property->type);
 
         if ($dataTypeHandler instanceof DataTypeInterface) {
-            if (!$property->value instanceof NoValueSet) {
-                $dataTypeHandler->setProperty($property);
-            }
+            $dataTypeHandler->setProperty($property);
 
             return $dataTypeHandler->build();
         }

@@ -1,3 +1,4 @@
 /vendor/
 /.idea/
 /reports/.phpunit.result.cache
+infection-report.*

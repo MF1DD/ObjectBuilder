@@ -28,7 +28,7 @@ class ArrayBuilder implements DataTypeInterface
 
     public function setProperty(Property $property): self
     {
-        if (!is_array($property->value) && $property->value !== null) {
+        if (!$property->value instanceof NoValueSet && !is_array($property->value) && $property->value !== null) {
             throw new InvalidArgumentException(
                 sprintf('Value "%s" must be an array. %s given', $property->value, gettype($property->value))
             );
