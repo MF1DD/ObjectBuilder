@@ -2,3 +2,4 @@
 /.idea/
 /reports/.phpunit.result.cache
 infection-report.*
+.deptrac.cache
