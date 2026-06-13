@@ -18,4 +18,4 @@ test-coverage: ## run unit tests and create a report
 ## —— ✅ Code Style ✅ ———————————————————————————————————————————————————————————
 .PHONY: phpstan
 phpstan: ## run phpstan
-	vendor/bin/phpstan analyse
+	vendor/bin/phpstan analyse -c .qa/phpstan/phpstan.neon

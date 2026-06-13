@@ -63,7 +63,7 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Run PHPStan
-        run: vendor/bin/phpstan analyse --no-progress --error-format=github --memory-limit=512M
+        run: vendor/bin/phpstan analyse -c .qa/phpstan/phpstan.neon --no-progress --error-format=github --memory-limit=512M
 
   infection:
     name: Mutation Testing (Infection)
@@ -85,7 +85,7 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Run Infection
-        run: vendor/bin/infection --no-progress --min-msi=40 --min-covered-msi=45 --threads=4
+        run: vendor/bin/infection --configuration .qa/infection/infection.json5 --no-progress --min-msi=40 --min-covered-msi=45 --threads=4
 
   psalm:
     name: Static Analysis (Psalm)
@@ -105,7 +105,7 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Run Psalm
-        run: vendor/bin/psalm --no-progress --show-info=false
+        run: vendor/bin/psalm -c .qa/psalm/psalm.xml --no-progress --show-info=false
 
   rector:
     name: Code Quality (Rector)
@@ -125,7 +125,7 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Run Rector (dry-run)
-        run: vendor/bin/rector process src/ --dry-run --no-progress-bar
+        run: vendor/bin/rector process src/ --config .qa/rector/rector.php --dry-run --no-progress-bar
 
   deptrac:
     name: Architecture (Deptrac)
@@ -145,7 +145,7 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Run Deptrac
-        run: vendor/bin/deptrac analyse --no-progress
+        run: vendor/bin/deptrac analyse --config-file .qa/deptrac/deptrac.yaml --no-progress
 
   security:
     name: Security (Composer Audit)

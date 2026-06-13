@@ -113,9 +113,7 @@ class ObjectBuilderTest extends TestCase
     {
         $classes = get_declared_classes();
 
-        $classesInGlobalNamespace = array_filter($classes, function($class) {
-            return strpos($class, '\\') === false;
-        });
+        $classesInGlobalNamespace = array_filter($classes, fn($class) => !str_contains($class, '\\'));
 
 //        print_r($classesInGlobalNamespace);
 

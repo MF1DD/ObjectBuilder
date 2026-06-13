@@ -10,8 +10,12 @@
 /Makefile              export-ignore
 /bootstrap.php         export-ignore
 /phpunit.xml           export-ignore
-/phpstan.neon          export-ignore
-/ecs.php               export-ignore
+/.qa/ecs/ecs.php        export-ignore
+/.qa/phpstan/phpstan.neon export-ignore
+/.qa/infection/infection.json5 export-ignore
+/.qa/psalm/psalm.xml    export-ignore
+/.qa/rector/rector.php  export-ignore
+/.qa/deptrac/deptrac.yaml export-ignore
 /Report.md             export-ignore
 /ToDo.md               export-ignore
 /.phpunit.result.cache export-ignore

@@ -8,8 +8,8 @@ use Rector\TypeDeclaration\Rector\Property\TypedPropertyFromStrictConstructorRec
 
 return RectorConfig::configure()
     ->withPaths([
-        __DIR__ . '/src',
-        __DIR__ . '/tests',
+        __DIR__ . '/../../src',
+        __DIR__ . '/../../tests',
     ])
     ->withPhpSets(php82: true)
     ->withRules([
